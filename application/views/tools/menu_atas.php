@@ -78,7 +78,7 @@
             <h5 class="modal-title" id="exampleModalLabel">Daftar</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form action="adminpanel/Pendaftaran/Simpan_data" method="post">
+          <form action="Pendaftaran/Simpan_data" method="post">
             <div class="modal-body">
 
               

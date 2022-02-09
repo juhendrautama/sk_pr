@@ -22,7 +22,7 @@ function Simpan_data(){
 			$alamat=$this->db->escape_str($this->input->post('alamat'));
 			$no_telpon=$this->db->escape_str($this->input->post('no_telpon'));
 			$email=$this->db->escape_str($this->input->post('email'));
-			$pass=$this->db->escape_str($this->input->post('pass'));
+			$pass=md5($_POST['pass']);
 			$tgl=Date("Y-m-d");
 			$sql=$this->db->query("
 				INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama`, `jenis_kel`,`tgl_lahir`, `alamat`, `no_telpon`, `email`,`pass`) 
