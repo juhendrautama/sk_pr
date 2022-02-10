@@ -53,7 +53,7 @@ class Login_user extends CI_Controller {
 						);	
 					$this->session->set_userdata($data);
 
-					echo 'login sukses';
+					redirect('/Home');
 
 					// if ($ok->status=='1') {
 					// 	redirect('adminpanel/Home');

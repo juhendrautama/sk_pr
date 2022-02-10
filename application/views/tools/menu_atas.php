@@ -21,12 +21,34 @@
                 <?php } ?>
                 </ul>
               </li>
-           
-
-              <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
-               <li><a  href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="bi bi-box-arrow-in-right"></span>&nbsp; Daftar | Login</a></li>
+            <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+             <?php $berhasil=$this->session->userdata('login');
+                    if (!isset($berhasil) || $berhasil !=true ){
+              ?> 
               
-             
+               <li><a  href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="bi bi-box-arrow-in-right"></span>
+               &nbsp; Daftar | Login</a></li>
+              <?php }else{ ?>
+               
+                
+                <li class="dropdown"><a href="#"><span>User : <?php echo $this->session->userdata('nama'); ?> </span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li>
+                    <a class="dropdown-item a"  href="Login_user/logout">Keranjang</a>
+                  </li>
+                 <li>
+                    <a class="dropdown-item a"  href="Login_user/logout">Dashboard</a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item a" Onclick="return confirm('apakah yakin ingin keluar ?');" href="Login_user/logout">Logout</a>
+                  </li>
+
+                </ul>
+              </li>
+              &nbsp;
+              <li><i class="bi bi-cart-fill btn btn-primary btn-sm">12</i></li>
+             <?php } ?>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
           </nav><!-- .navbar -->
@@ -49,11 +71,11 @@
 
               
                   <div class="form-group">
-                      <input type="text" class="form-control" id="recipient-name" name="email" placeholder="Email">
+                      <input required type="text" class="form-control" id="recipient-name" name="email" placeholder="Email">
                   </div>
                   <br>
                   <div class="form-group">
-                      <input type="password" class="form-control" id="recipient-name" name="pass" placeholder="Password">
+                      <input required type="password" class="form-control" id="recipient-name" name="pass" placeholder="Password">
                   </div>
                  
 
@@ -84,12 +106,12 @@
               
                   <div class="form-group">
                     <label>Nama</label>
-                      <input type="text" class="form-control" id="recipient-name" name="nama" placeholder="nama">
+                      <input required type="text" class="form-control" id="recipient-name" name="nama" placeholder="nama">
                   </div>
                   <br>
                   <div class="form-group">
-                      <select class="form-control" name="jenis_kel">
-                        <option>Pilih Jenis Kelamin</option>
+                      <select required class="form-control" name="jenis_kel">
+                        <option value="">Pilih Jenis Kelamin</option>
                         <option value="Laki-Laki">Laki-Laki</option>
                         <option value="Perempuan">Perempuan</option>
                       </select>
@@ -97,26 +119,26 @@
                   <br>
                    <div class="form-group">
                       <label>Tanggal Lahir</label>
-                      <input type="date" class="form-control" id="recipient-name" name="tgl_lahir" placeholder="Tanggal Lahir">
+                      <input required type="date" class="form-control" id="recipient-name" name="tgl_lahir" placeholder="Tanggal Lahir">
                   </div>
                    <br>
                    <div class="form-group">
                       <label>Alamat</label>
-                      <input type="text" class="form-control" id="recipient-name" name="alamat" placeholder="Alamat">
+                      <input required type="text" class="form-control" id="recipient-name" name="alamat" placeholder="Alamat">
                   </div>
                   <br>
                   <div class="form-group">
                       <label>No Telpon</label>
-                      <input type="number" class="form-control" id="recipient-name" name="no_telpon" placeholder="No Telpon">
+                      <input required type="number" class="form-control" id="recipient-name" name="no_telpon" placeholder="No Telpon">
                   </div>
                   <br>
                    <div class="form-group">
                       <label>Email</label>
-                      <input type="email" class="form-control" id="recipient-name" name="email" placeholder="Email">
+                      <input required type="email" class="form-control" id="recipient-name" name="email" placeholder="Email">
                   </div>
                   <br>
                   <div class="form-group">
-                      <input type="password" class="form-control" id="recipient-name" name="pass" placeholder="Password">
+                      <input required type="password" class="form-control" id="recipient-name" name="pass" placeholder="Password">
                   </div>
                  
 
