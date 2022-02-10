@@ -44,7 +44,7 @@
             <h5 class="modal-title" id="exampleModalLabel">LOGIN</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <form action="adminpanel/Kategori_produk/Simpan_data" method="post">
+          <form action="Login_user/cek" method="post">
             <div class="modal-body">
 
               
@@ -61,7 +61,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-secondary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Daftar</button>
+              <button type="button" class="btn btn-danger" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal">Daftar</button>
               <button type="submit"  class="btn btn-primary" name="proses">Login</button>
             </div>
           </form> 
@@ -124,7 +124,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-secondary" data-bs-target="#exampleModal" data-bs-toggle="modal">Login</button>
+             <!--  <button type="button" class="btn btn-danger" data-bs-target="#exampleModal" data-bs-toggle="modal">Login</button> -->
               <button type="submit"  class="btn btn-primary" name="proses">Simpan</button>
             </div>
           </form> 

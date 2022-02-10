@@ -23,14 +23,20 @@ function Simpan_data(){
 			$no_telpon=$this->db->escape_str($this->input->post('no_telpon'));
 			$email=$this->db->escape_str($this->input->post('email'));
 			$pass=md5($_POST['pass']);
+			$pass_samaran=$this->db->escape_str($this->input->post('pass'));
 			$tgl=Date("Y-m-d");
 			$sql=$this->db->query("
-				INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama`, `jenis_kel`,`tgl_lahir`, `alamat`, `no_telpon`, `email`,`pass`) 
-				VALUES ('', '$nama', '$jenis_kel','$tgl_lahir', '$alamat', '$no_telpon','$email','$pass');
+				INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama`, `jenis_kel`,`tgl_lahir`, `alamat`, `no_telpon`, `email`,`pass`,`pass_samaran`,`tgl`) 
+				VALUES ('', '$nama', '$jenis_kel','$tgl_lahir', '$alamat', '$no_telpon','$email','$pass','$pass_samaran','$tgl');
 			");
 		return $sql ;	
 		}
 
-
+function cek (){	
+		$email=$this->db->escape_str($this->input->post('email'));
+		$pass=md5($_POST['pass']);
+		$hsl=$this->db->query("select * from tbl_pelanggan where email='$email' and pass='$pass'");
+		return $hsl;
+	}
 
 }

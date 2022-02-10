@@ -7,7 +7,7 @@ class Login_user extends CI_Controller {
 	function __construct(){
 
 			parent::__construct();
-			$this->load->model('M_crud_user');
+			$this->load->model('M_crud_pelanggan');
 			$this->load->library("session");
 		}
 
@@ -34,33 +34,39 @@ class Login_user extends CI_Controller {
   
 
 	function cek(){
-			$hsl=$this->M_crud_user->cek();
+			$hsl=$this->M_crud_pelanggan->cek();
 			if ($hsl->num_rows() == 1)
 			{//jika salah satu pasword ada di di dalam table 
 					$ok=$hsl->row();
 					$data=array(
-						'id_admin'=>$ok->id_admin,
-						'user'=>$ok->user,
-						'pass'=>$ok->pass,
+						'id_pelanggan'=>$ok->id_pelanggan,
+						'nama'=>$ok->nama,
+						'jenis_kel'=>$ok->jenis_kel,
+						'tgl_lahir'=>$ok->tgl_lahir,
 						'alamat'=>$ok->alamat,
-						'no_tlpn'=>$ok->no_tlpn,
-						'status'=>$ok->status,
+						'no_telpon'=>$ok->no_telpon,
+						'email'=>$ok->email,
+						'pass'=>$ok->pass,
+						'pass_samaran'=>$ok->pass_samaran,
 						'tgl'=>$ok->tgl,
 						'login'=>true
 						);	
 					$this->session->set_userdata($data);
-					if ($ok->status=='1') {
-						redirect('adminpanel/Home');
 
-					}else if ($ok->status=='2') {
-						redirect('adminpanel/Home');
-					}
+					echo 'login sukses';
+
+					// if ($ok->status=='1') {
+					// 	redirect('adminpanel/Home');
+
+					// }else if ($ok->status=='2') {
+					// 	redirect('adminpanel/Home');
+					// }
 			}else{
 
 				echo'<script type="text/javascript">
 						//<![CDATA[
 						alert("password salah silah kan login kembali ");
-						window.location="../Login_akses";
+						window.location="../";
 						//]]>
 					</script>';
 
