@@ -68,7 +68,20 @@
                                        ?>  
                                        <a href="#" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-cart3"></i> Beli </a>
                                       <?php }else{ ?>
-                                       <a href="#" class="btn btn-success btn-sm"><i class="bi bi-cart3"></i> Beli </a> 
+                                       <form action="Transaksi/Simpan_data_keranjang" method="post" >
+                                        <?php $id_pelanggan=$this->session->userdata('id_pelanggan');?>
+                                        <?php  $id_produk=$tampil_produk_detail->id_produk; ?>
+                                        <?php  $nama_produk=$tampil_produk_detail->nama_produk; ?>
+                                        <?php $total_harga=$tampil_produk_detail->harga; ?>
+                                        <input type="text" hidden name="id_pelanggan" value="<?php echo $id_pelanggan; ?>">
+                                        <input type="text" hidden name="id_produk" value="<?php echo $id_produk; ?>">
+                                        <input type="text" hidden name="nama_produk" value="<?php echo $nama_produk; ?>">
+                                        <input type="text" hidden name="jumlah_pesanan" value="1">
+                                        <input type="text" hidden name="total_harga" value="<?php echo $total_harga; ?>">
+                                          <button type="submit"  class="btn btn-success btn-sm" name="proses_keranjang">
+                                            <i class="bi bi-cart3"></i> Beli
+                                          </button>
+                                       </form> 
                                       <?php } ?>  
 
                                      
@@ -117,101 +130,11 @@
  <!-- GAMBAR -->
 
 
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h3>Contact Us</h3>
-        </div>
-
-        <div class="row contact-info">
-<?php $no=1; foreach($tampil_data_kontak_addres->result()as $rs){?> 
-          <div class="col-md-4">
-            <div class="contact-address">
-              <i class="bi bi-geo-alt"></i>
-              <h3><?php echo $rs->nama_kontak; ?></h3>
-              <address><?php echo $adres=$rs->isi; ?></address>
-            </div>
-          </div>
-<?php } ?>
-
-<?php $no=1; foreach($tampil_data_kontak_nomber_phone->result()as $rs){?>
-          <div class="col-md-4">
-            <div class="contact-phone">
-              <i class="bi bi-phone"></i>
-              <h3><?php echo $rs->nama_kontak; ?></h3>
-              <p><a href="tel:<?php echo $rs->isi; ?>"><?php echo $phone=$rs->isi; ?></a></p>
-            </div>
-          </div>
-<?php } ?>
-
-
-<?php $no=1; foreach($tampil_data_kontak_email->result()as $rs){?>
-          <div class="col-md-4">
-            <div class="contact-email">
-              <i class="bi bi-envelope"></i>
-              <h3><?php echo $rs->nama_kontak; ?></h3>
-              <p><a href="mailto:<?php echo $rs->isi; ?>"><?php echo $email=$rs->isi; ?></a></p>
-            </div>
-          </div>
-<?php } ?>
-
-        </div>
-
-        <div class="form">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d997.0487589836796!2d103.62149655554127!3d-1.6344555136993586!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e2589a437d5726f%3A0xf76eb59610c68a20!2sRumah%20Atap%20Harmoni!5e0!3m2!1sid!2sid!4v1644140298209!5m2!1sid!2sid" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
+ </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
-    <div class="footer-top">
-      <div class="container">
-        <div class="row">
-
-
-          <div class="col-lg-4 col-md-6 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Profil</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Daftar</a></li>
-              <li><i class="bi bi-chevron-right"></i> <a href="#">Login</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-contact">
-            <h4>Contact Us</h4>
-            <p>
-              <?php echo $adres; ?>
-
-              <strong>Phone:<?php echo $phone; ?></strong>
-              <strong>Email:<?php echo $email; ?></strong> 
-            </p>
-
-           
-
-          </div>
-
-          <div class="col-lg-4 col-md-6 footer-newsletter">
-            <h4>Media Sosial</h4>
-            <div class="social-links">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
+ 
 
     <div class="container">
       <div class="copyright">

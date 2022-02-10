@@ -22,6 +22,7 @@
                 </ul>
               </li>
             <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
+            
              <?php $berhasil=$this->session->userdata('login');
                     if (!isset($berhasil) || $berhasil !=true ){
               ?> 
@@ -33,9 +34,6 @@
                 
                 <li class="dropdown"><a href="#"><span>User : <?php echo $this->session->userdata('nama'); ?> </span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
-                  <li>
-                    <a class="dropdown-item a"  href="Login_user/logout">Keranjang</a>
-                  </li>
                  <li>
                     <a class="dropdown-item a"  href="Login_user/logout">Dashboard</a>
                   </li>
@@ -46,8 +44,19 @@
 
                 </ul>
               </li>
-              &nbsp;
-              <li><i class="bi bi-cart-fill btn btn-primary btn-sm">12</i></li>
+              <?php 
+              $id_pelanggan=$this->session->userdata('id_pelanggan'); 
+              $aVar = mysqli_connect('localhost','root','','sk_pr');
+              $query = mysqli_query($aVar, "SELECT COUNT(id_keranjang) AS total FROM tbl_keranjang WHERE id_pelanggan='$id_pelanggan' ");
+              $total = mysqli_fetch_assoc($query); 
+              ?>
+              <li>
+                <a href="Transaksi/Keranjang/<?php echo $id_pelanggan; ?> ">
+                  <i class="bi bi-cart-fill btn btn-danger btn-sm">
+                  <?php echo $total['total']; ?>
+                  </i>
+                </a>
+              </li>
              <?php } ?>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

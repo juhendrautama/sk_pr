@@ -53,14 +53,7 @@ class Login_user extends CI_Controller {
 						);	
 					$this->session->set_userdata($data);
 
-					redirect('/Home');
-
-					// if ($ok->status=='1') {
-					// 	redirect('adminpanel/Home');
-
-					// }else if ($ok->status=='2') {
-					// 	redirect('adminpanel/Home');
-					// }
+					redirect('/Home/#portfolio');
 			}else{
 
 				echo'<script type="text/javascript">
