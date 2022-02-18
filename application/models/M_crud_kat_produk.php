@@ -47,5 +47,11 @@ function Hapus_data($id=''){
 function tampil_kat_id($id){
 			$sql=$this->db->query("select	id_kategori,nama,tgl FROM tbl_kategori_produk where id_kategori='$id' ");
 			return $sql->row();
-		}		
+		}	
+
+function total_produk_id_kate($id_kategori){
+			$sql=$this->db->query("SELECT count(id_produk) as total FROM tbl_produk where id_kategori='$id_kategori' ");
+			return $sql;
+		}	
+
 }

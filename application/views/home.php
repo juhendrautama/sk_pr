@@ -206,15 +206,6 @@
 
  <?php $this->load->view('tools/js_footer'); ?>
 
-  <script type="text/javascript">
-      $.getJSON('https://api.jambiprov.go.id/pegawai/',function (data){
-                            
-        let tampil_data = data.tampil_data;
-          $.each(tampil_data,function(i, data){
-            $('#daftar_data').append(data.foto);
-          }); 
-      });
-    </script>
 
  
   </body>

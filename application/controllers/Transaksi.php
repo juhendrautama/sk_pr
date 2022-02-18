@@ -50,6 +50,27 @@ public function Simpan_data_keranjang(){
 		$this->load->view('keranjang',$data);
 
 	}	
+public function hitung_jumlah_pesanan(){
+		if(isset($_POST['kurang_1'])){
+			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));	
+			$hasil=$this->M_crud_transaki->proses_kurang_pesanan();
+			if ($hasil){ ?>
+						<script type="text/javascript">
+							window.location="<?php echo base_url() ?>Transaksi/Keranjang/<?php echo $id_pelanggan ?>";
+						</script>
+					<?php }
+		}else if(isset($_POST['tambah_1'])) {
+			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));	
+			$hasil=$this->M_crud_transaki->proses_tambah_pesanan();
+			if ($hasil){ ?>
+						<script type="text/javascript">
+							window.location="<?php echo base_url() ?>Transaksi/Keranjang/<?php echo $id_pelanggan ?>";
+						</script>
+					<?php }	
+		}else{
+				redirect('/Home');
+		}
+	}	
 
 
 }

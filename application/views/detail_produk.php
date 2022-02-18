@@ -72,12 +72,12 @@
                                         <?php $id_pelanggan=$this->session->userdata('id_pelanggan');?>
                                         <?php  $id_produk=$tampil_produk_detail->id_produk; ?>
                                         <?php  $nama_produk=$tampil_produk_detail->nama_produk; ?>
-                                        <?php $total_harga=$tampil_produk_detail->harga; ?>
+                                        <?php $harga=$tampil_produk_detail->harga; ?>
                                         <input type="text" hidden name="id_pelanggan" value="<?php echo $id_pelanggan; ?>">
                                         <input type="text" hidden name="id_produk" value="<?php echo $id_produk; ?>">
                                         <input type="text" hidden name="nama_produk" value="<?php echo $nama_produk; ?>">
                                         <input type="text" hidden name="jumlah_pesanan" value="1">
-                                        <input type="text" hidden name="total_harga" value="<?php echo $total_harga; ?>">
+                                        <input type="text" hidden name="harga" value="<?php echo $harga; ?>">
                                           <button type="submit"  class="btn btn-success btn-sm" name="proses_keranjang">
                                             <i class="bi bi-cart3"></i> Beli
                                           </button>

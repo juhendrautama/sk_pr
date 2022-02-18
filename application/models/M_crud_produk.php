@@ -115,6 +115,11 @@ function Hapus_data($id=''){
 			$sql=$this->db->query("select	id_produk,id_kategori,kode_produk,nama_produk,stok,harga,keterangan,tgl_tambah,gambar FROM tbl_produk where id_kategori='$id' ");
 			return $sql;
 		}
+
+		function tampil_data_stok($id=''){
+			$sql=$this->db->query("select	stok FROM tbl_produk where id_produk='$id' ");
+			return $sql;
+		}		
 ///halaman depan		
 
 

@@ -28,7 +28,7 @@
    <!-- GAMBAR -->
      <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="section-bg">
-      <div class="container" data-aos="fade-up">
+      <div class="container" >
 
         <header class="section-header">
           <h3 class="section-title">DATA KERANJANG</h3>
@@ -37,14 +37,13 @@
   
 <div class="row">
 
-    <div class="col-md-8">     
+    <div class="col-md-9">     
       <div class="card">
         <div class="card-body">
-              <div class="row " data-aos="fade-up" data-aos-delay="200">
                         
 
-                             <table class="table">
-                              <tr>
+                             <table class="table table-bordered border-primary table-hover">
+                              <tr style="font-size:15px;">
                                 <th>No</th>
                                 <th>Nama Produk</th>
                                 <th>Stok</th>
@@ -52,17 +51,48 @@
                                 <th>Harga</th>
                                 <th>Total Harga</th>
                               </tr>
-                              
+                              <?php $no=1; foreach($tampil_data_keranjang_pel->result()as $rs) {?>
+                              <tr style="font-size:12px;">
+                                <td><?php echo $no ?></td>
+                                 <td><?php echo $rs->nama_produk; ?></td>
+                                 <td>
+                                  <?php 
+                                       $id_produk= $rs->id_produk;
+                  $stok=$this->M_crud_produk->tampil_data_stok($id_produk)->row();
+                  $jumlah_pesanan=$rs->jumlah_pesanan;
+                  $stok_awal=$stok->stok;
+                  echo $stok_akhir=$stok_awal-$jumlah_pesanan;
+
+                  $harga=$rs->harga;
+                  $total_harga = $harga*$jumlah_pesanan;
+
+                                  ?>
+                                 
+                               </td>
+                                 <td>
+              <form action="Transaksi/hitung_jumlah_pesanan" method="post">
+                <input type="text" hidden name="id_keranjang" value="<?php echo $rs->id_keranjang; ?>"> 
+               <input type="text" hidden name="id_pelanggan" value="<?php echo $rs->id_pelanggan; ?>"> 
+               <input type="text" hidden name="id_produk" value="<?php echo $rs->id_produk; ?>"> 
+               <input type="text" hidden name="jumlah_pesanan" value="<?php echo $rs->jumlah_pesanan; ?>"> 
+                                 
+              <button type="submit" name="kurang_1"  class="btn btn-info" style="padding:0px;">&nbsp; - &nbsp;</button>
+              &nbsp; <?php echo $rs->jumlah_pesanan; ?> &nbsp;
+              <button type="submit" name="tambah_1"  class="btn btn-info" style="padding:0px;">&nbsp; + &nbsp;</button>
+              </form> 
+                                 </td>
+                                 <td><?php echo $rs->harga; ?></td>
+                                 <td><?php echo $total_harga; ?></td>
+                              </tr>
+                            <?php $no++; } ?>
 
                              </table>     
-                                 
-                             
-                </div>
+                       
         </div>
       </div>
     </div>
 
-    <div class="col-md-4">  
+    <div class="col-md-3">  
           <ul class="list-group">
           <li class="list-group-item bg-success" style="color:#ffff;">
             <i class="bi bi-card-list"></i>
@@ -76,11 +106,11 @@
           </div>
             <span class="badge bg-success rounded-pill">
                <?php 
-                    $aVar = mysqli_connect('localhost','root','','sk_pr');
-                    $id_kategori= $rs->id_kategori;;                      
-                    $query = mysqli_query($aVar,"SELECT count(id_produk) as total FROM tbl_produk where id_kategori='$id_kategori' ");
-                    $total = mysqli_fetch_assoc($query);
-                    echo $total['total'];
+                  $id_kategori= $rs->id_kategori;
+                  $total=$this->M_crud_kat_produk->total_produk_id_kate($id_kategori)->row();
+                  echo $total->total;
+
+
                 ?>
             </span>
             </a>
