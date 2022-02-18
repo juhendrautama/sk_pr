@@ -57,14 +57,14 @@
                                  <td><?php echo $rs->nama_produk; ?></td>
                                  <td>
                                   <?php 
-                                       $id_produk= $rs->id_produk;
-                  $stok=$this->M_crud_produk->tampil_data_stok($id_produk)->row();
-                  $jumlah_pesanan=$rs->jumlah_pesanan;
-                  $stok_awal=$stok->stok;
-                  echo $stok_akhir=$stok_awal-$jumlah_pesanan;
+                                    $id_produk= $rs->id_produk;
+                                    $stok=$this->M_crud_produk->tampil_data_stok($id_produk)->row();
+                                    $jumlah_pesanan=$rs->jumlah_pesanan;
+                                    $stok_awal=$stok->stok;
+                                    echo $stok_akhir=$stok_awal-$jumlah_pesanan;
 
-                  $harga=$rs->harga;
-                  $total_harga = $harga*$jumlah_pesanan;
+                                    $harga=$rs->harga;
+                                    $total_harga = $harga*$jumlah_pesanan;
 
                                   ?>
                                  
