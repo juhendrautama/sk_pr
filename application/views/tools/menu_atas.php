@@ -46,14 +46,12 @@
               </li>
               <?php 
               $id_pelanggan=$this->session->userdata('id_pelanggan'); 
-              $aVar = mysqli_connect('localhost','root','','sk_pr');
-              $query = mysqli_query($aVar, "SELECT COUNT(id_keranjang) AS total FROM tbl_keranjang WHERE id_pelanggan='$id_pelanggan' ");
-              $total = mysqli_fetch_assoc($query); 
+              $total=$this->M_crud_transaki->tot_data_keranjang_pel($id_pelanggan)->row();
               ?>
               <li>
                 <a href="Transaksi/Keranjang/<?php echo $id_pelanggan; ?> ">
                   <i class="bi bi-cart-fill btn btn-danger btn-sm">
-                  <?php echo $total['total']; ?>
+                  <?php echo $total->total; ?>
                   </i>
                 </a>
               </li>

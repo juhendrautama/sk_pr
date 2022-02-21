@@ -15,6 +15,7 @@ class Kontak extends CI_Controller {
 			$this->load->model('M_crud_header');
 			$this->load->model('M_crud_putusan');
 			$this->load->model('M_crud_kontak');
+			$this->load->model('M_crud_transaki');
 		}
 
 	

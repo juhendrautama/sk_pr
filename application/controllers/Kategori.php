@@ -14,6 +14,7 @@ class Kategori extends CI_Controller {
 			$this->load->model('M_crud_kontak');
 			$this->load->model('M_crud_kat_produk');
 			$this->load->model('M_crud_produk');
+			$this->load->model('M_crud_transaki');
 		}
 
 	

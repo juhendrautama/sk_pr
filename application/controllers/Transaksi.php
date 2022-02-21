@@ -35,7 +35,7 @@ public function Simpan_data_keranjang(){
 
 	public function Keranjang($id='')
 	{
-
+		
 		$data['tampil_data_profil']=$this->M_crud_profil->tampil_data_profil();
 
 		$data['tampil_data_kontak_addres']=$this->M_crud_kontak->tampil_data_kontak_addres();
@@ -45,6 +45,7 @@ public function Simpan_data_keranjang(){
 		//kategori produk
 		$data['tampil_data_kat_produk']=$this->M_crud_kat_produk->tampil_data_kat_produk();
 		//kategori produk
+
 
 		$data['tampil_data_keranjang_pel']=$this->M_crud_transaki->tampil_data_keranjang_pel($id);
 		$this->load->view('keranjang',$data);
@@ -71,6 +72,28 @@ public function hitung_jumlah_pesanan(){
 				redirect('/Home');
 		}
 	}	
+
+
+	public function Proses_beli()
+	{
+
+		$data['tampil_data_profil']=$this->M_crud_profil->tampil_data_profil();
+
+		$data['tampil_data_kontak_addres']=$this->M_crud_kontak->tampil_data_kontak_addres();
+		$data['tampil_data_kontak_nomber_phone']=$this->M_crud_kontak->tampil_data_kontak_nomber_phone();
+		$data['tampil_data_kontak_email']=$this->M_crud_kontak->tampil_data_kontak_email();
+
+		//kategori produk
+		$data['tampil_data_kat_produk']=$this->M_crud_kat_produk->tampil_data_kat_produk();
+		//kategori produk
+
+		$id=$this->db->escape_str($this->input->post('id_pelanggan'));
+		$data['kode_pesanan'] = $this->M_crud_transaki->kode_pesanan();
+		$data['tampil_data_keranjang_pel']=$this->M_crud_transaki->tampil_data_keranjang_pel($id);
+		$this->load->view('proses_beli',$data);
+
+	}	
+
 
 
 }
