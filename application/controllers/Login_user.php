@@ -14,7 +14,7 @@ class Login_user extends CI_Controller {
 
 
 	function index(){
-			$this->load->view('admin/login');
+			$this->load->view('home');
 		}
 
 
@@ -25,7 +25,7 @@ class Login_user extends CI_Controller {
 			$berhasil=$this->session->userdata('login');
 			if (!isset($berhasil) || $berhasil !=true )
 			{
-				redirect('adminpanel/Login_akses');
+				redirect('Home');
 			}
 		}
 

@@ -15,7 +15,17 @@ class Transaksi extends CI_Controller {
 			$this->load->model('M_crud_kontak');
 			$this->load->model('M_crud_kat_produk');
 			$this->load->model('M_crud_produk');
+			$this->load->library("session");
+			$this->sessionku();
 
+		}
+
+function sessionku ()
+
+		{
+			$berhasil=$this->session->userdata('login');
+			if (!isset($berhasil) || $berhasil !=true )
+			{ redirect('Home'); }
 		}
 
 
@@ -94,6 +104,45 @@ public function hitung_jumlah_pesanan(){
 
 	}	
 
+public function Simpan_pesanan(){
+		if(isset($_POST['proses'])){
+				
+		//simpan detail pesanan	
+		$id_detail_pesanan=$this->db->escape_str($this->input->post('id_detail_pesanan'));
+	 	$total_con=count($id_detail_pesanan);
+		for ($i=0; $i < $total_con; $i++) { 
+			$data = array(
+				'status' =>$this->input->post('status')[$i],
+				'kode_pesanan' =>$this->input->post('kode_pesanan')[$i], 
+			);
+			
+			$where = array(
+				'id_detail_pesanan' =>$this->input->post('id_detail_pesanan')[$i],
+			 
+			);
+	 		$sql1=$this->M_crud_transaki->Simpan_pesanan_detail($where,$data,'tbl_detail_pesanan');
+	 		
+			
+		}
+		//simpan detail pesanan	
+
+
+		//simpan pesanan
+		$nama_file=$this->M_crud_transaki->upload_bukti($sql1);
+		$sql2=$this->M_crud_transaki->Simpan_pesanan($sql1,$nama_file);	
+		//simpan pesanan
+
+		 if ($sql2){ ?>
+					<script type="text/javascript">
+						alert('DATA TERSIMPAN');window.location="<?php echo base_url() ?>Home";
+					</script>
+				<?php }
+
+
+			}else{
+				redirect('/Home');
+			}
+	}
 
 
 }

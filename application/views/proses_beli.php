@@ -39,14 +39,20 @@
         <div class="card-header bg-success" style="color:white;"><i class="bi bi-cart-fill "></i>Proses Pembelian</div>
         <div class="card-body">
                         
-<form action="Transaksi/Proses_beli" method="post">
-<?php $tgl=Date("Ymd"); ?>  
-<input type="text" hidden name="kode_pesanan" value="<?php echo $tgl.$kode_pesanan ?> ">
+
+<?php $tgl=Date("Ymd"); ?> 
+<?php $id_pelanggan = $this->session->userdata('id_pelanggan'); ?> 
+<form action="Transaksi/Simpan_pesanan" method="post" enctype="multipart/form-data">
 <table>
   <tr>
-    <td>Kode Pemesanan</td><td>: <?php echo $tgl.$kode_pesanan ?></td>
+    <td>Kode Pemesanan</td>
+    <td>: 
+    <?php echo $kode_pesanan_barang=$tgl.$id_pelanggan.$kode_pesanan ?>
+    <input type="text" hidden name="kode_pesanan2" value="<?php echo $kode_pesanan_barang; ?>">
+    <input type="text" hidden name="status2" value="PROSES">
+    </td>
   </tr>
-    <tr>
+  <tr>
     <td>Nama</td><td>: <?php echo $this->session->userdata('nama'); ?></td>
   </tr>
    <tr>
@@ -55,7 +61,8 @@
 </table>
 <hr>
 
-                             <table class="table table-bordered border-primary table-hover">
+
+              <table class="table table-bordered border-primary table-hover">
                               <tr style="font-size:15px;">
                                 <th>No</th>
                                 <th>Nama Produk</th>
@@ -65,17 +72,27 @@
                                 <th>Total Harga</th>
                               </tr>
                             
-                              <?php
-                              $grentot_pesanan=0;
-                              $grento_total_harga=0;
-                               $no=1; foreach($tampil_data_keranjang_pel->result()as $rs) {?>
-                                
-
+                          <?php
+                          $grentot_pesanan=0;
+                          $grento_total_harga=0;
+                          $no=1; foreach($tampil_data_keranjang_pel->result()as $rs) {?>
                               <tr style="font-size:12px;">
-                                <td><?php echo $no ?></td>
-                                 <td><?php echo $rs->nama_produk; ?></td>
-                                   <td><?php echo $harga_rp= "Rp " . number_format($rs->harga,0,',','.'); ?></td>
+                                <td>
+                                  <?php echo $no; ?>
+                                  <input type="text" hidden  name="status[]" value="O">
+                                  <input type="text" hidden  name="id_detail_pesanan[]" value="<?php echo $rs->id_detail_pesanan; ?> ">
+                                  <input type="text" hidden  name="kode_pesanan[]" value="<?php echo $kode_pesanan_barang; ?>">
+                                </td>
+                                 <td>
+                                  <?php echo $rs->nama_produk; ?>
+                                  <input type="text" hidden name="nama_produk[]" value="<?php echo $rs->nama_produk; ?>"> 
+                                 </td>
+                                   <td>
+                                    <?php echo $harga_rp= "Rp " . number_format($rs->harga,0,',','.'); ?>
+                                     <input type="text" hidden name="harga[]" value="<?php echo $rs->harga; ?>"> 
+                                   </td>
                                  <?php 
+
                                   //proses stok
                                       $id_produk = $rs->id_produk;
                                       $stok = $this->M_crud_produk->tampil_data_stok($id_produk)->row();
@@ -93,36 +110,39 @@
                                     
                                   ?>
                                  <td>
+                                   <input type="text" hidden name="id_produk[]" value="<?php echo $rs->id_produk; ?>"> 
+                                   <input type="text" hidden name="id_pelanggan[]" value="<?php echo $rs->id_pelanggan; ?>"> 
                                  <center>
-                                  <form action="Transaksi/hitung_jumlah_pesanan" method="post">
-                                    <input type="text" hidden name="id_keranjang" value="<?php echo $rs->id_keranjang; ?>"> 
-                                   <input type="text" hidden name="id_pelanggan" value="<?php echo $rs->id_pelanggan; ?>"> 
-                                   <input type="text" hidden name="id_produk" value="<?php echo $rs->id_produk; ?>"> 
-                                   <input type="text" hidden name="jumlah_pesanan" value="<?php echo $rs->jumlah_pesanan; ?>"> 
-                                 
-                             
-
                                   &nbsp; <?php echo $rs->jumlah_pesanan; ?> &nbsp;
-
-                               
-                                  
-                                  </form> 
                                 </center>
+                                <input type="text" hidden name="jumlah_pesanan[]" value="<?php echo $rs->jumlah_pesanan; ?>"> 
                                 </td>
                                
-                                 <td><?php echo $total_harga_rp= "Rp " . number_format($total_harga,0,',','.'); ?></td>
+                                <td>
+                                  <?php echo $total_harga_rp= "Rp " . number_format($total_harga,0,',','.'); ?>
+                                  <input type="text" hidden  name="total_harga[]" value="<?php echo $total_harga; ?>"> 
+                                </td>
                               </tr>
 
+                              
 
                             <?php $no++; } ?>
 
                             <tr>
                               <td colspan="3">Gran total</td>
-                              <td><center><?php echo $grentot_pesanan; ?> </center></td>
-                              <td ><?php echo $grento_total_harga_rp="Rp " . number_format($grento_total_harga,0,',','.'); ?></td>
+                              <td>
+                                <center>
+                                  <?php echo $grentot_pesanan; ?> 
+                                  <input type="text" hidden  name="jumlah_pesan2" value="<?php echo $grentot_pesanan; ?>"> 
+                                </center>
+                            </td>
+                              <td >
+                                <?php echo $grento_total_harga_rp="Rp " . number_format($grento_total_harga,0,',','.'); ?>
+                                <input type="text" hidden name="total_harga2" value="<?php echo $grento_total_harga; ?>"> 
+                              </td>
                             </tr>
+      </table> 
 
-                             </table>   
        <hr> 
        <table>
          <tr>
@@ -149,10 +169,14 @@
          </tr>
        </table>
        <hr>
+
+
        <label>Upload Foto Bukti Pembayaran :</label>
-       <input type="file" class="form-control" name="">
+
+        
+       <input  type="file" required name="userfile" class="form-control" value="">
        <hr>
-        <button type="submit" name="btnbeli" class="btn btn-lg btn-danger" style="float:right;width:100%;font-size:20px;">KIRIM </button>
+        <button type="submit" name="proses" class="btn btn-lg btn-danger" style="float:right;width:100%;font-size:20px;">KIRIM </button>
       </form>                 
                        
         </div>

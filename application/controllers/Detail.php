@@ -33,6 +33,8 @@ class Detail extends CI_Controller {
 		//kategori produk
 
 
+	
+
 		//Detail produk
 		$data['tampil_produk_detail']=$this->M_crud_produk->tampil_data_produk_detail($id);
 		//Detail produk

@@ -78,7 +78,8 @@
                                         <input type="text" hidden name="nama_produk" value="<?php echo $nama_produk; ?>">
                                         <input type="text" hidden name="jumlah_pesanan" value="1">
                                         <input type="text" hidden name="harga" value="<?php echo $harga; ?>">
-                                          <button type="submit"  class="btn btn-success btn-sm" name="proses_keranjang">
+                                        <button type="submit"  class="btn btn-success btn-sm" name="proses_keranjang">
+
                                             <i class="bi bi-cart3"></i> Beli
                                           </button>
                                        </form> 
@@ -94,6 +95,9 @@
         </div>
       </div>
     </div>
+
+
+
 
     <div class="col-md-4">  
           <ul class="list-group">

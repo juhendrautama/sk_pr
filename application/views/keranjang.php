@@ -39,7 +39,7 @@
         <div class="card-header bg-success" style="color:white;"><i class="bi bi-cart-fill "></i>Keranjang Belanja</div>
         <div class="card-body">
                         
-<form action="Transaksi/Proses_beli" method="post">  
+ 
                              <table class="table table-bordered border-primary table-hover">
                               <tr style="font-size:15px;">
                                 <th>No</th>
@@ -83,9 +83,9 @@
                                </td>
                                  <td>
                                  <center>
-                                  <form action="Transaksi/hitung_jumlah_pesanan" method="post">
-                                    <input type="text" hidden name="id_keranjang" value="<?php echo $rs->id_keranjang; ?>"> 
-                                   <input type="text" hidden name="id_pelanggan" value="<?php echo $rs->id_pelanggan; ?>"> 
+                          <form action="Transaksi/hitung_jumlah_pesanan" method="post">
+                                  <input type="text" hidden name="id_detail_pesanan" value="<?php echo $rs->id_detail_pesanan; ?>"> 
+                                   <input type="text" hidden name="id_pelanggan" value="<?php echo $id_pelanggan=$rs->id_pelanggan; ?>"> 
                                    <input type="text" hidden name="id_produk" value="<?php echo $rs->id_produk; ?>"> 
                                    <input type="text" hidden name="jumlah_pesanan" value="<?php echo $rs->jumlah_pesanan; ?>"> 
                                   <?php if($jumlah_pesanan==0){ ?> 
@@ -103,7 +103,7 @@
                                   <button type="submit" name="tambah_1"  class="btn btn-info" style="padding:0px;">&nbsp; + &nbsp;</button>
                                   <?php } ?>
                                   
-                                  </form> 
+                          </form> 
                                 </center>
                                 </td>
                                
@@ -120,8 +120,12 @@
                             </tr>
 
                              </table>   
-              
+      <form action="Transaksi/Proses_beli" method="post">  
+        <?php $id_pelanggan=$this->session->userdata('id_pelanggan');?>  
+        <input type="text" hidden name="id_pelanggan" value="<?php echo $id_pelanggan ?>"> 
+        <?php if($grentot_pesanan=='0'){}else{ ?>    
         <button type="submit" name="btnbeli" class="btn btn-lg btn-danger" style="float:right;width:100%;font-size:20px;">Bayar Sekarang</button>
+        <?php } ?>
       </form>                 
                        
         </div>

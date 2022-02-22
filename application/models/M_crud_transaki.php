@@ -20,72 +20,100 @@ function Simpan_data_keranjang(){
 		$harga=$this->db->escape_str($this->input->post('harga'));
 		$tgl=Date("Y-m-d");
 			$sql=$this->db->query("
-				INSERT INTO `tbl_keranjang` (
-				  `id_keranjang`,
+				INSERT INTO `tbl_detail_pesanan` (
+				  `id_detail_pesanan`,
 				  `id_pelanggan`,
 				  `id_produk`,
+				  `kode_pesanan`,
 				  `nama_produk`,
 				  `jumlah_pesanan`,
 				  `harga`,
-				  `tgl`
+				  `tgl`,
+				  `status`
 				)
 				VALUES
 				  (
 				    '',
 				    '$id_pelanggan',
 				    '$id_produk',
+				    '',
 				    '$nama_produk',
 				    '$jumlah_pesanan',
 				    '$harga',
-				    '$tgl'
+				    '$tgl',
+				    'K'
 				  );
 			");
 		return $sql ;	
 		}
 function tampil_data_keranjang_pel($id){
-			$sql=$this->db->query("select	* FROM tbl_keranjang where id_pelanggan='$id' ");
+			$sql=$this->db->query("select	* FROM tbl_detail_pesanan where id_pelanggan='$id' and status='K' ");
 			return $sql;
 		}	
 function tot_data_keranjang_pel($id_pelanggan){
-			$sql=$this->db->query("SELECT COUNT(id_keranjang) AS total FROM tbl_keranjang WHERE id_pelanggan='$id_pelanggan'");
+			$sql=$this->db->query("SELECT COUNT(id_detail_pesanan) AS total FROM tbl_detail_pesanan WHERE id_pelanggan='$id_pelanggan' and status='K' ");
 			return $sql;
 		}
 
 function proses_kurang_pesanan(){
-		$id_keranjang=$this->db->escape_str($this->input->post('id_keranjang'));
+		$id_detail_pesanan=$this->db->escape_str($this->input->post('id_detail_pesanan'));
 		$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
 		$id_produk=$this->db->escape_str($this->input->post('id_produk'));
 		$jumlah_pesanan=$this->db->escape_str($this->input->post('jumlah_pesanan'));
 		$total_pesanan=$jumlah_pesanan-1;
 		$sql=$this->db->query("
 		UPDATE
-		  `tbl_keranjang`
+		  `tbl_detail_pesanan`
 		SET
 		  `jumlah_pesanan` = '$total_pesanan'
-		WHERE `id_keranjang` = '$id_keranjang' AND `id_pelanggan` = '$id_pelanggan' AND `id_produk` = '$id_produk';
+		WHERE `id_detail_pesanan` = '$id_detail_pesanan' AND `id_pelanggan` = '$id_pelanggan' AND `id_produk` = '$id_produk';
 		");
 		return $sql ;	
 		}
 
 function proses_tambah_pesanan(){
-		$id_keranjang=$this->db->escape_str($this->input->post('id_keranjang'));
+		$id_detail_pesanan=$this->db->escape_str($this->input->post('id_detail_pesanan'));
 		$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
 		$id_produk=$this->db->escape_str($this->input->post('id_produk'));
 		$jumlah_pesanan=$this->db->escape_str($this->input->post('jumlah_pesanan'));
 		$total_pesanan=$jumlah_pesanan+1;
 		$sql=$this->db->query("
 		UPDATE
-		  `tbl_keranjang`
+		  `tbl_detail_pesanan`
 		SET
 		  `jumlah_pesanan` = '$total_pesanan'
-		WHERE `id_keranjang` = '$id_keranjang' AND `id_pelanggan` = '$id_pelanggan' AND `id_produk` = '$id_produk';
+		WHERE `id_detail_pesanan` = '$id_detail_pesanan' AND `id_pelanggan` = '$id_pelanggan' AND `id_produk` = '$id_produk';
 		");
 		return $sql ;	
 		}		
 
 //transaksi keranjang
 		
-function kode_pesanan()   {    
+
+
+
+
+function kode_pesanan_detail()   {    
+  $this->db->select('RIGHT(tbl_detail_pesanan.kode_pesanan,2) as kode', FALSE);
+  $this->db->order_by('id_detail_pesanan','DESC');    
+  $this->db->limit(1);     
+  $query = $this->db->get('tbl_detail_pesanan');      //cek dulu apakah ada sudah ada kode di tabel.    
+  if($query->num_rows() <> 0){       
+   //jika kode ternyata sudah ada.      
+   $data = $query->row();      
+   $kode = intval($data->kode) + 1;     
+  }
+  else{       
+   //jika kode belum ada      
+   $kode = 1;     
+  }
+  $kodemax = str_pad($kode, 2, "0", STR_PAD_LEFT);    
+  $kodejadi = "0".$kodemax;     
+  return $kodejadi;  
+ }
+
+
+ function kode_pesanan()   {    
   $this->db->select('RIGHT(tbl_pesanan.kode_pesanan,2) as kode', FALSE);
   $this->db->order_by('id_pesanan','DESC');    
   $this->db->limit(1);     
@@ -102,7 +130,73 @@ function kode_pesanan()   {
   $kodemax = str_pad($kode, 2, "0", STR_PAD_LEFT);    
   $kodejadi = "0".$kodemax;     
   return $kodejadi;  
- }	
+ }		
+
+
+
+//proses simpan pesanan detail
+ function Simpan_pesanan_detail($where,$data,$table){
+ 		$this->db->where($where);
+		$sql=$this->db->update($table,$data);
+		return $sql;	
+		}
+//proses simpan pesanan detail
+
+
+
+
+	function upload_bukti(){
+			$config['upload_path'] = 'img/bukti_bayar';
+			$config['allowed_types'] = '*';
+			$config['max_size']	= '10000';
+			$config['max_width']  = '10000';
+			$config['max_height']  = '10000';
+			$this->load->library('upload',$config);
+		
+
+			
+			
+		if ( ! $this->upload->do_upload()){
+			$this->load->view('proses_beli');
+		}
+		}			
+
+ 
+
+function Simpan_pesanan(){
+		$kode_pesanan2=$this->db->escape_str($this->input->post('kode_pesanan2'));
+		$dt=$this->upload->data();
+		$bukti_pembayaran=$dt['orig_name'];
+		$jumlah_pesan2=$this->db->escape_str($this->input->post('jumlah_pesan2'));
+		$total_harga2=$this->db->escape_str($this->input->post('total_harga2'));
+		$tanggal_pesan2=Date("Y-m-d");
+		$status2=$this->db->escape_str($this->input->post('status2'));
+		$sql=$this->db->query("
+						INSERT INTO `tbl_pesanan` (
+						  `id_pesanan`,
+						  `kode_pesanan`,
+						  `bukti_pembayaran`,
+						  `jumlah_pesan`,
+						  `total_harga`,
+						  `tanggal_pesan`,
+						  `status`
+						)
+						VALUES
+						  (
+						    '',
+						    '$kode_pesanan2',
+						    '$bukti_pembayaran',
+						    '$jumlah_pesan2',
+						    '$total_harga2',
+						    '$tanggal_pesan2',
+						    '$status2'
+						  )
+			");
+		return $sql ;	
+		}		
+
+	
+
 
 
 }
