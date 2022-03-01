@@ -78,6 +78,14 @@ public function hitung_jumlah_pesanan(){
 							window.location="<?php echo base_url() ?>Transaksi/Keranjang/<?php echo $id_pelanggan ?>";
 						</script>
 					<?php }	
+		}else if(isset($_POST['hapus_data_keranjang'])) {
+			$id_detail_pesanan=$this->db->escape_str($this->input->post('id_detail_pesanan'));	
+			$hasil=$this->M_crud_transaki->hapus_data_keranjang($id_detail_pesanan);
+			if ($hasil){ ?>
+						<script type="text/javascript">
+							window.location="<?php echo base_url() ?>Home/#portfolio";
+						</script>
+					<?php }			
 		}else{
 				redirect('/Home');
 		}
@@ -105,7 +113,7 @@ public function hitung_jumlah_pesanan(){
 	}	
 
 public function Simpan_pesanan(){
-		if(isset($_POST['proses'])){
+	if(isset($_POST['proses'])){
 				
 		//simpan detail pesanan	
 		$id_detail_pesanan=$this->db->escape_str($this->input->post('id_detail_pesanan'));
@@ -115,14 +123,10 @@ public function Simpan_pesanan(){
 				'status' =>$this->input->post('status')[$i],
 				'kode_pesanan' =>$this->input->post('kode_pesanan')[$i], 
 			);
-			
 			$where = array(
 				'id_detail_pesanan' =>$this->input->post('id_detail_pesanan')[$i],
-			 
 			);
 	 		$sql1=$this->M_crud_transaki->Simpan_pesanan_detail($where,$data,'tbl_detail_pesanan');
-	 		
-			
 		}
 		//simpan detail pesanan	
 

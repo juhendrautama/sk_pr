@@ -50,6 +50,7 @@
     <?php echo $kode_pesanan_barang=$tgl.$id_pelanggan.$kode_pesanan ?>
     <input type="text" hidden name="kode_pesanan2" value="<?php echo $kode_pesanan_barang; ?>">
     <input type="text" hidden name="status2" value="PROSES">
+    <input type="text" hidden  name="id_pelanggan2" value="<?php echo $id_pelanggan ?>">
     </td>
   </tr>
   <tr>

@@ -19,7 +19,7 @@ class Detail extends CI_Controller {
 
 	
 
-	public function Produk($id)
+	public function Produk($id='')
 
 	{
 		$data['tampil_data_profil']=$this->M_crud_profil->tampil_data_profil();
@@ -38,6 +38,10 @@ class Detail extends CI_Controller {
 		//Detail produk
 		$data['tampil_produk_detail']=$this->M_crud_produk->tampil_data_produk_detail($id);
 		//Detail produk
+
+		//tampil_data_stok_order
+	
+		//tampil_data_stok_order
 		
 		$this->load->view('detail_produk',$data);
 

@@ -46,19 +46,28 @@
                                   <img src="img/gambar_produk/<?php echo $tampil_produk_detail->gambar; ?>" class="img-thumbnail" style='width:100%; height: 100%;' >
                              </div>
                              <div class="col-md-7">
-                                
+                                <?php
+                                 $id=$tampil_produk_detail->id_produk;
+                                 $jumlah_pesanan=$this->M_crud_transaki->tampil_data_stok_order($id);
+                               
+                                 if (empty($jumlah_pesanan)) {
+                                   $jumlah_pesanan='0';
+                                 }else{
+                                   $jumlah_pesanan=$jumlah_pesanan->jumlah_pesanan; 
+                                 }
+                                 $stok=$tampil_produk_detail->stok; 
+                                $total_stok=$stok-$jumlah_pesanan;
+                                ?>
                                   <h4><b><?php echo $tampil_produk_detail->nama_produk; ?></b></h4>
                                   <hr>
                                   <p style="font-size: 15px;  color:green;">  
                                         <?php
-                                            $aVar = mysqli_connect('localhost','root','','sk_pr');
-                                            $id_kategori=$tampil_produk_detail->id_kategori;
-                                            $query = mysqli_query($aVar,"SELECT * FROM tbl_kategori_produk where id_kategori='$id_kategori'   ");
-                                            $aName1 = mysqli_fetch_assoc($query);
-                                            $nama_kategori=$aName1['nama']; 
+                                          $id_kategori=$tampil_produk_detail->id_kategori;
+                                          $sql=$this->M_crud_kat_produk->tampil_kat_id($id_kategori);
+                                          $nama_kategori=$sql->nama; 
                                         ?> 
                                         Kategori : <?php echo $nama_kategori; ?> <br>
-                                        Stok : <?php echo $tampil_produk_detail->stok; ?><br>
+                                        Stok  : <?php echo $total_stok; ?> <br>
                                         Harga : <?php echo $hasil_rupiah = "Rp " . number_format($tampil_produk_detail->harga,2,',','.'); ?>
                                   <hr>
                                       <?php echo $tampil_produk_detail->keterangan; ?>
@@ -78,10 +87,11 @@
                                         <input type="text" hidden name="nama_produk" value="<?php echo $nama_produk; ?>">
                                         <input type="text" hidden name="jumlah_pesanan" value="1">
                                         <input type="text" hidden name="harga" value="<?php echo $harga; ?>">
+                                        <?php if($total_stok=='0'){}else{ ?>
                                         <button type="submit"  class="btn btn-success btn-sm" name="proses_keranjang">
-
-                                            <i class="bi bi-cart3"></i> Beli
-                                          </button>
+                                          <i class="bi bi-cart3"></i> Beli
+                                        </button>
+                                        <?php } ?>
                                        </form> 
                                       <?php } ?>  
 

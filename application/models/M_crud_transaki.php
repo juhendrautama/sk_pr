@@ -87,6 +87,16 @@ function proses_tambah_pesanan(){
 		return $sql ;	
 		}		
 
+function tampil_data_stok_order($id){
+			$sql=$this->db->query("select	* FROM tbl_detail_pesanan where status='O' and id_produk='$id'  ");
+			return $sql->row();
+		}	
+
+function hapus_data_keranjang($id_detail_pesanan=''){
+			$hasil=$this->db->query("delete from tbl_detail_pesanan where id_detail_pesanan = '$id_detail_pesanan' ");
+			return $hasil;
+		} 
+
 //transaksi keranjang
 		
 
@@ -165,6 +175,7 @@ function kode_pesanan_detail()   {
 
 function Simpan_pesanan(){
 		$kode_pesanan2=$this->db->escape_str($this->input->post('kode_pesanan2'));
+		$id_pelanggan2=$this->db->escape_str($this->input->post('id_pelanggan2'));
 		$dt=$this->upload->data();
 		$bukti_pembayaran=$dt['orig_name'];
 		$jumlah_pesan2=$this->db->escape_str($this->input->post('jumlah_pesan2'));
@@ -174,6 +185,7 @@ function Simpan_pesanan(){
 		$sql=$this->db->query("
 						INSERT INTO `tbl_pesanan` (
 						  `id_pesanan`,
+						  `id_pelanggan`,
 						  `kode_pesanan`,
 						  `bukti_pembayaran`,
 						  `jumlah_pesan`,
@@ -184,6 +196,7 @@ function Simpan_pesanan(){
 						VALUES
 						  (
 						    '',
+						    '$id_pelanggan2',
 						    '$kode_pesanan2',
 						    '$bukti_pembayaran',
 						    '$jumlah_pesan2',

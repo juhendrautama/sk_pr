@@ -64,31 +64,57 @@
                                  <td>
                                   <?php 
                                   //proses stok
-                                      $id_produk = $rs->id_produk;
+                                    $id_produk = $rs->id_produk;
                                       $stok = $this->M_crud_produk->tampil_data_stok($id_produk)->row();
-                                      $jumlah_pesanan = $rs->jumlah_pesanan;
-                                      $stok_awal = $stok->stok;
-                                      $stok_akhir = $stok_awal-$jumlah_pesanan;
+                                      $jumlah_pesanan_order1=$this->M_crud_transaki->tampil_data_stok_order($id_produk);
+                                      $jumlah_pesanan_order=@$jumlah_pesanan_order1->jumlah_pesanan;
+                                      if (empty($jumlah_pesanan_order)){
+                                        $jumlah_pesanan_order= 0;
+                                      }else{
+                                        $jumlah_pesanan_order;
+                                      }
 
-                                      $harga = $rs->harga;
-                                      $total_harga = $harga * $jumlah_pesanan;
+                                    // echo '<br>';
+                                    // echo 'jumlah_pesanan_order :'.$jumlah_pesanan_order;
+                                    // echo"<br>";
+                                    // echo  'jumlah_pesanan_keranjang :'.$jumlah_pesanan_keranjang = $rs->jumlah_pesanan;
+                                    // echo '<br>';
+
+
+                                    $jumlah_pesanan_order;
+                                    $jumlah_pesanan_keranjang = $rs->jumlah_pesanan;
+
+                                      $stok = $stok->stok;
+                                      $stok_order=$stok-$jumlah_pesanan_order;
+
+                                      $stok_akhir=$stok_order-$jumlah_pesanan_keranjang;
+
+
+
+
                                    //proses stok  
-                                   
+                                    $harga = $rs->harga;
+                                    $total_harga = $harga * $jumlah_pesanan_keranjang;
 
-                                    $grentot_pesanan=$grentot_pesanan + $jumlah_pesanan;
+                                    $grentot_pesanan=$grentot_pesanan + $jumlah_pesanan_keranjang;
                                     $grento_total_harga=$grento_total_harga + $total_harga;
                                     
                                   ?>
-                                 <?php echo $stok_akhir; ?>
+                                 <?php echo 'Sisa stok :'.$stok_akhir; ?>
                                </td>
                                  <td>
+
                                  <center>
+
                           <form action="Transaksi/hitung_jumlah_pesanan" method="post">
                                   <input type="text" hidden name="id_detail_pesanan" value="<?php echo $rs->id_detail_pesanan; ?>"> 
                                    <input type="text" hidden name="id_pelanggan" value="<?php echo $id_pelanggan=$rs->id_pelanggan; ?>"> 
                                    <input type="text" hidden name="id_produk" value="<?php echo $rs->id_produk; ?>"> 
                                    <input type="text" hidden name="jumlah_pesanan" value="<?php echo $rs->jumlah_pesanan; ?>"> 
-                                  <?php if($jumlah_pesanan==0){ ?> 
+                                   <button type="submit" name="hapus_data_keranjang"   class="btn" style="padding:0px;">
+                                   <i style="font-size: 1rem;" class="bi bi-trash-fill"></i>
+                                   </button>
+                                  <?php if($jumlah_pesanan_keranjang==0){ ?> 
                                   <button type="submit" name="kurang_1" disabled  class="btn btn-dark" style="padding:0px;">&nbsp; - &nbsp;
                                   </button>
                                 <?php }else{ ?>
@@ -106,7 +132,6 @@
                           </form> 
                                 </center>
                                 </td>
-                               
                                  <td><?php echo $total_harga_rp= "Rp " . number_format($total_harga,0,',','.'); ?></td>
                               </tr>
 
