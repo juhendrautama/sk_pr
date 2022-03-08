@@ -10,21 +10,7 @@
  
   <hr><hr><br>
 
-
-
-
-
-
   <main id="main">
-
-  
-
-   
-
-   
-
-
-
    <!-- GAMBAR -->
      <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="section-bg">
