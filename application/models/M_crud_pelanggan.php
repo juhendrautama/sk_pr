@@ -39,4 +39,42 @@ function cek (){
 		return $hsl;
 	}
 
+
+function tampil_data_profil_user($id){
+			$sql=$this->db->query("select * FROM tbl_pelanggan where id_pelanggan='$id' ");
+			return $sql->row();
+		}	
+
+
+//setting profil
+function Simpan_ubah(){
+			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
+			$nama=$this->db->escape_str($this->input->post('nama'));
+			$jenis_kel=$this->db->escape_str($this->input->post('jenis_kel'));
+			$tgl_lahir=$this->db->escape_str($this->input->post('tgl_lahir'));
+			$alamat=$this->db->escape_str($this->input->post('alamat'));
+			$no_telpon=$this->db->escape_str($this->input->post('no_telpon'));
+			$email=$this->db->escape_str($this->input->post('email'));
+			$pass=md5($_POST['pass']);
+			$pass_samaran=$this->db->escape_str($this->input->post('pass'));
+			$tgl=Date("Y-m-d");
+			$sql=$this->db->query("
+			UPDATE
+			  `tbl_pelanggan`
+			SET
+			  `nama` = '$nama',
+			  `jenis_kel` = '$jenis_kel',
+			  `tgl_lahir` = '$tgl_lahir',
+			  `alamat` = '$alamat',
+			  `no_telpon` = '$no_telpon',
+			  `email` = '$email',
+			  `pass` = '$pass',
+			  `pass_samaran` = '$pass_samaran',
+			  `tgl` = 'tgl'
+			WHERE `id_pelanggan` = '$id_pelanggan';
+			");
+		return $sql ;	
+		}	
+//setting profil			
+
 }

@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="adminpanel/Home">PT Harmoni Trussindo Lestari</a>
+                <a class="navbar-brand" href="user/Home">PT Harmoni Trussindo Lestari</a>
             </div>
             <!-- /.navbar-header -->
             <?php $this->load->view('user/tools/menu_atas'); ?>

@@ -55,9 +55,9 @@
      toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code | fullpage | fontsizeselect",
      image_advtab: true ,
      
-     external_filemanager_path:"https://pkk.jambiprov.go.id/assets/filemanager/",
+     external_filemanager_path:"http://localhost/sk_pr/assets/filemanager/",
      filemanager_title:"Media Manager" ,
-     external_plugins: { "filemanager" : "https://pkk.jambiprov.go.id/assets/filemanager/plugin.min.js"}
+     external_plugins: { "filemanager" : "http://localhost/sk_pr/assets/filemanager/plugin.min.js"}
     });
 </script>
 

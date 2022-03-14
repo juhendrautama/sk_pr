@@ -8,11 +8,13 @@
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         
-                        <li>
-                       <a Onclick="return confirm('YAKIN  KELUAR  ?');" href="Login_user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        
+                        
+                        <li><a href="Home"><i class="fa fa-shopping-bag"></i> ORDER</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="Home" target="_blank"><i class="fa fa-gear fa-fw"></i> View Web</a>
+                        <li>
+                       <a Onclick="return confirm('YAKIN  KELUAR  ?');" href="Login_user/logout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                         
                     </ul>

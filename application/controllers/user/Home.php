@@ -17,7 +17,16 @@ class Home extends CI_Controller {
 
 	
 
-	function sessionku ()
+	
+
+public function index()
+
+	{
+		$this->load->view('user/home');
+
+	}
+
+function sessionku ()
 
 	{
 		$berhasil=$this->session->userdata('login');
@@ -25,16 +34,35 @@ class Home extends CI_Controller {
 		{ redirect('user/Login_akses'); }
 	}
 
-	public function index()
+
+
+
+
+
+//profil pelanggan
+public function Profil($id)
 
 	{
-		$this->load->view('user/home');
+		$data['tampil_data_profil_user']=$this->M_crud_pelanggan->tampil_data_profil_user($id);
+		$this->load->view('user/profil',$data);
 
 	}
 
+public function Simpan_ubah(){
+		if(isset($_POST['proses'])){
+		$id=$this->db->escape_str($this->input->post('id_pelanggan'));	
+		$hasil=$this->M_crud_pelanggan->Simpan_ubah();
+		if ($hasil){ ?>
+				<script type="text/javascript">
+						alert('Data Tersimpan ');window.location="<?php echo base_url() ?>user/Home/Profil/<?php echo $id; ?>";
+					</script>
+				<?php }
+			}else{
+				redirect('/Admin_kegiatan');
+			}
+	}
 
-
-	
+//profil pelanggan	
 
 
 
