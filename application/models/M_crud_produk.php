@@ -124,7 +124,15 @@ function Hapus_data($id=''){
 
 ///halaman depan		
 
-
-
+//proses dasbor data order
+		function tampil_data_pesanan_user($id=''){
+			$sql=$this->db->query("select	* FROM tbl_pesanan where id_pelanggan='$id' ");
+			return $sql;
+		}
+		function tampil_detail_pesanan_user($id=''){
+			$sql=$this->db->query("select	* FROM tbl_detail_pesanan where kode_pesanan='$id' ");
+			return $sql;
+		}
+//proses dasbor data order
 
 }

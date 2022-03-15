@@ -10,7 +10,7 @@
                         
                         
                         
-                        <li><a href="Home"><i class="fa fa-shopping-bag"></i> ORDER</a>
+                        <li><a href="Home"><i class="fa fa-shopping-basket"></i> ORDER</a>
                         </li>
                         <li class="divider"></li>
                         <li>

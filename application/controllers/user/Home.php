@@ -9,6 +9,7 @@ class Home extends CI_Controller {
 		{
 
 			parent::__construct();
+			$this->load->model('M_crud_produk');
 			$this->load->model('M_crud_pelanggan');
 			$this->load->library("session");
 			$this->sessionku();
@@ -64,7 +65,21 @@ public function Simpan_ubah(){
 
 //profil pelanggan	
 
+//data order
+public function Data_pesanan($id)
+	{
+		$data['tampil_data_pesanan_user']=$this->M_crud_produk->tampil_data_pesanan_user($id);
+		$this->load->view('user/data_pesanan',$data);
 
+	}
+public function Detail_pesanan($id)
+
+	{
+		$data['tampil_detail_pesanan_user']=$this->M_crud_produk->tampil_detail_pesanan_user($id);
+		$this->load->view('user/detail_pesanan',$data);
+
+	}	
+//data order
 
 
 
