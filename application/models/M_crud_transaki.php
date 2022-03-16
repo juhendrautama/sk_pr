@@ -162,8 +162,6 @@ function kode_pesanan_detail()   {
 			$config['max_width']  = '10000';
 			$config['max_height']  = '10000';
 			$this->load->library('upload',$config);
-		
-
 			
 			
 		if ( ! $this->upload->do_upload()){

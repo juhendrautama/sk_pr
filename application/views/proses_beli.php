@@ -36,7 +36,7 @@
 
     <div class="col-md-9">     
       <div class="card">
-        <div class="card-header bg-success" style="color:white;"><i class="bi bi-cart-fill "></i>Proses Pembelian</div>
+        <div class="card-header bg-success" style="color:white;"><i class="bi bi-cart-fill "></i>Proses Pembayaran</div>
         <div class="card-body">
                         
 

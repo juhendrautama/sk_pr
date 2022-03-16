@@ -21,6 +21,7 @@
                 <?php } ?>
                 </ul>
               </li>
+             <li><a class="nav-link scrollto" href="#portfolio">Pruduk</a></li>  
             <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
             
              <?php $berhasil=$this->session->userdata('login');

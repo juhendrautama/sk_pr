@@ -8,6 +8,9 @@
                           <li>
                             <a href="adminpanel/Data_pelanggan"><i class="fa fa-table fa-fw"></i> Data Pelanggan</a>
                         </li>
+                         <li>
+                            <a href="adminpanel/Data_pembelian"><i class="fa fa-table fa-fw"></i> Data Pembelian</a>
+                        </li>
                         
                         
                         

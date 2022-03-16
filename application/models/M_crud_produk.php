@@ -135,4 +135,12 @@ function Hapus_data($id=''){
 		}
 //proses dasbor data order
 
+//proses data pembelian admin
+		function tampil_data_pembelian(){
+			$sql=$this->db->query("select	kode_pesanan, jumlah_pesan, total_harga, tanggal_pesan, status FROM tbl_pesanan  ");
+			return $sql;
+		}
+//proses data pembelian admin		
+
+
 }
