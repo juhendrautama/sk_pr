@@ -172,10 +172,11 @@
        <hr>
 
 
-       <label>Upload Foto Bukti Pembayaran :</label>
+       <label>Upload Foto Bukti Pembayaran:</label>
 
         
        <input  type="file" required name="userfile" class="form-control" value="">
+       <b>Format FDF</b>
        <hr>
         <button type="submit" name="proses" class="btn btn-lg btn-danger" style="float:right;width:100%;font-size:20px;">KIRIM </button>
       </form>                 

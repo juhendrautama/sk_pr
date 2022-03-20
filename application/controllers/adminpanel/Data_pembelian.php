@@ -25,20 +25,20 @@ function sessionku (){
 			{ redirect('adminpanel/Login_akses'); }
 		}
 
-
-public function Simpan_data(){
+//konfiramsi pembelian
+public function Simpan_data_konfirmasi(){
 		if(isset($_POST['proses'])){
-		$hasil=$this->M_crud_pelanggan->Simpan_data();
+		$hasil=$this->M_crud_produk->Simpan_data_konfirmasi();
 		if ($hasil){ ?>
 				<script type="text/javascript">
-						alert('Data Tersimpan Silahkan Login');window.location="<?php echo base_url() ?>Home";
+						alert('Data Tersimpan');window.location="<?php echo base_url() ?>adminpanel/Data_pembelian";
 					</script>
 				<?php }
 			}else{
 				redirect('/Admin_kegiatan');
 			}
 	}
-
+//konfiramsi pembelian
 
 }
 

@@ -58,7 +58,7 @@
                                   <hr>
                                       <?php echo $tampil_produk_detail->keterangan; ?>
                                       <?php 
-                                       $berhasil=$this->session->userdata('login');
+                                       $berhasil=$this->session->userdata('login_user');
                                       if (!isset($berhasil) || $berhasil !=true ){
                                        ?>  
                                        <a href="#" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-cart3"></i> Beli </a>

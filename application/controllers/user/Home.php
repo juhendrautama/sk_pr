@@ -30,7 +30,7 @@ public function index()
 function sessionku ()
 
 	{
-		$berhasil=$this->session->userdata('login');
+		$berhasil=$this->session->userdata('login_user');
 		if (!isset($berhasil) || $berhasil !=true )
 		{ redirect('user/Login_akses'); }
 	}

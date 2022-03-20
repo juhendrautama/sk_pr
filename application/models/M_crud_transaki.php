@@ -157,7 +157,7 @@ function kode_pesanan_detail()   {
 
 	function upload_bukti(){
 			$config['upload_path'] = 'img/bukti_bayar';
-			$config['allowed_types'] = '*';
+			$config['allowed_types'] = 'fdf';
 			$config['max_size']	= '10000';
 			$config['max_width']  = '10000';
 			$config['max_height']  = '10000';

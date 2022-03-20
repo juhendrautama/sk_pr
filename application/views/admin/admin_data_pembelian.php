@@ -70,13 +70,85 @@
                                         <td><?php echo $rs->status; ?></td>
                                         <td>
                                         <center>
-                                        <a  href="user/Home/Detail_pesanan/<?php echo $rs->kode_pesanan; ?>" class="btn-sm btn-primary">
+                                        <a  href="#" class="btn-sm btn-primary" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
                                         Konfirmasi
                                         </a> 
                                         </center> 
 
                                         </td>
                                     </tr>
+
+<!-- Modal -->
+<div class="modal fade" id="m<?php echo $rs->kode_pesanan; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">KONFIRMASI PEMBELIAN</h4>
+      </div>
+    <form action="adminpanel/Data_pembelian/Simpan_data_konfirmasi" method="post">
+      <div class="modal-body">
+        <label>Kode Pesanan</label>
+        <div class="row">
+            <div class="form-group col-md-4" >
+                <input type="text" hidden name="id_pesanan" value="<?php echo $rs->id_pesanan; ?>">   
+                <input type="text"   hidden  name="id_pelanggan"  value="<?php echo $rs->id_pelanggan; ?>">
+                <input type="text" class="form-control" readonly  name="a"  value="B<?php echo $rs->kode_pesanan; ?>">
+            </div>
+            <div class="form-group col-md-4">
+                 <a href="img/bukti_bayar/<?php echo $rs->bukti_pembayaran; ?>" target="_blank" class="btn btn-success" >Lihat Bukti Pembayaran</a>
+            </div>
+        </div>
+
+            
+           
+        <hr>
+
+        <div class="row">
+            <div class="form-group col-md-12">
+                <select required class="form-control" name="status">
+                    <option value="">Status</option>
+                    
+                    <option value="Di Terima">Di Terima</option>
+                    <option value="Di Tolak">Di Tolak</option>
+                    
+                </select>                                                                       
+            </div>
+        </div>      
+        
+           
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary" name="proses">Simpan</button>
+      </div>
+
+    </form> 
+
+    </div>
+  </div>
+</div>
+<!-- Modal -->  
+
+
+<!-- Modal 2 -->
+<div class="modal fade" id="m2<?php echo $rs->kode_pesanan; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Bukti Pembelian</h4>
+      </div>
+  
+      <div class="modal-body">
+
+      </div>  
+
+    </div>
+  </div>
+</div>
+<!-- Modal 2 -->  
 
 
 

@@ -24,8 +24,8 @@
              <li><a class="nav-link scrollto" href="#portfolio">Pruduk</a></li>  
             <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
             
-             <?php $berhasil=$this->session->userdata('login');
-                    if (!isset($berhasil) || $berhasil !=true ){
+             <?php $berhasil=$this->session->userdata('login_user');
+                    if (!isset($berhasil) || $berhasil !=true  ){
               ?> 
               
                <li><a  href="#" data-bs-toggle="modal" data-bs-target="#exampleModal"><span class="bi bi-box-arrow-in-right"></span>
@@ -36,7 +36,7 @@
                 <li class="dropdown"><a href="#"><span>User : <?php echo $this->session->userdata('nama'); ?> </span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                  <li>
-                    <a class="dropdown-item a"  href="user/Home">Dashboard</a>
+                    <a class="dropdown-item a"  href="user/Home">Dashboard <?php echo $this->session->userdata('user'); ?></a>
                   </li>
 
                   <li>
@@ -66,7 +66,7 @@
     </div>
   </header><!-- End Header -->
 
-  <!-- modal login -->
+<!-- modal login -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -100,7 +100,7 @@
 </div>
 <!-- modal login -->
 
- <!-- modal daftar -->
+<!-- modal daftar -->
 <div class="modal fade" id="exampleModalToggle2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">

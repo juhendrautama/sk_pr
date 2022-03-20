@@ -137,7 +137,7 @@ function Hapus_data($id=''){
 
 //proses data pembelian admin
 		function tampil_data_pembelian(){
-			$sql=$this->db->query("select	kode_pesanan, jumlah_pesan, total_harga, tanggal_pesan, status FROM tbl_pesanan  ");
+			$sql=$this->db->query("select	id_pesanan, id_pelanggan, kode_pesanan, bukti_pembayaran, jumlah_pesan, total_harga, tanggal_pesan, status FROM tbl_pesanan  ");
 			return $sql;
 		}
 //proses data pembelian admin		

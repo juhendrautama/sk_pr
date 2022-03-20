@@ -49,7 +49,7 @@ class Login_user extends CI_Controller {
 						'pass'=>$ok->pass,
 						'pass_samaran'=>$ok->pass_samaran,
 						'tgl'=>$ok->tgl,
-						'login'=>true
+						'login_user'=>true
 						);	
 					$this->session->set_userdata($data);
 
