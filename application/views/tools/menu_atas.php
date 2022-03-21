@@ -36,7 +36,7 @@
                 <li class="dropdown"><a href="#"><span>User : <?php echo $this->session->userdata('nama'); ?> </span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                  <li>
-                    <a class="dropdown-item a"  href="user/Home">Dashboard <?php echo $this->session->userdata('user'); ?></a>
+                    <a class="dropdown-item a"  href="user/Home">Dashboard</a>
                   </li>
 
                   <li>

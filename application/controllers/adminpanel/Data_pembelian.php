@@ -38,6 +38,19 @@ public function Simpan_data_konfirmasi(){
 				redirect('/Admin_kegiatan');
 			}
 	}
+
+public function Proses_cetak_invoice(){
+		if(isset($_POST['proses'])){
+		$hasil=$this->M_crud_produk->Simpan_data_konfirmasi();
+		if ($hasil){ ?>
+				<script type="text/javascript">
+						alert('Data Tersimpan');window.location="<?php echo base_url() ?>adminpanel/Data_pembelian";
+					</script>
+				<?php }
+			}else{
+				redirect('/Admin_kegiatan');
+			}
+	}	
 //konfiramsi pembelian
 
 }

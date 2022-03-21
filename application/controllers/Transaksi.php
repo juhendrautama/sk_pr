@@ -23,7 +23,7 @@ class Transaksi extends CI_Controller {
 function sessionku ()
 
 		{
-			$berhasil=$this->session->userdata('login');
+			$berhasil=$this->session->userdata('login_user');
 			if (!isset($berhasil) || $berhasil !=true )
 			{ redirect('Home'); }
 		}
@@ -148,6 +148,22 @@ public function Simpan_pesanan(){
 			}
 	}
 
+//proses kirim ulang bukti pembayaran
+	public function Kirim_ulang(){
+		if(isset($_POST['proses'])){
+		$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));	
+		$nama_file2=$this->M_crud_transaki->upload_bukti2();
+		$hasil=$this->M_crud_transaki->Kirim_ulang($nama_file2);
+		if ($hasil){ ?>
+					<script type="text/javascript">
+						window.location="<?php echo base_url() ?>user/Home/Data_pesanan/<?php echo $id_pelanggan ?>";
+					</script>
+				<?php }
+			}else{
+				redirect('/Home');
+			}
+	}
+//proses kirim ulang bukti pembayaran
 
 }
 

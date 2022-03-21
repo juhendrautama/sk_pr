@@ -136,10 +136,24 @@ function Hapus_data($id=''){
 //proses dasbor data order
 
 //proses data pembelian admin
-		function tampil_data_pembelian(){
-			$sql=$this->db->query("select	id_pesanan, id_pelanggan, kode_pesanan, bukti_pembayaran, jumlah_pesan, total_harga, tanggal_pesan, status FROM tbl_pesanan  ");
+	function tampil_data_pembelian(){
+			$sql=$this->db->query("select	id_pesanan, id_pelanggan, kode_pesanan, bukti_pembayaran, jumlah_pesan, total_harga, tanggal_pesan, status, no_telpon_super FROM tbl_pesanan  ");
 			return $sql;
 		}
+	function Simpan_data_konfirmasi(){
+			$id_pesanan=$this->db->escape_str($this->input->post('id_pesanan'));
+			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
+			$kode_pesanan=$this->db->escape_str($this->input->post('kode_pesanan'));
+			$status=$this->db->escape_str($this->input->post('status'));
+			$sql=$this->db->query("
+					UPDATE
+					  `tbl_pesanan`
+					SET
+					  `status` = '$status'
+					WHERE `id_pesanan` = '$id_pesanan' and  `id_pelanggan` ='$id_pelanggan' and `kode_pesanan`='$kode_pesanan';
+			");
+		return $sql ;	
+		}		
 //proses data pembelian admin		
 
 

@@ -71,9 +71,22 @@
                                         <td><?php echo $rs->jumlah_pesan; ?></td>
                                         <td><?php echo $hasil_rupiah = "Rp " . number_format($harga=$rs->total_harga,2,',','.');?></td>
                                         <td><?php  echo date('d F Y', strtotime($rs->tanggal_pesan)); ?></td>
-                                        <td><?php echo $rs->status; ?></td>
+                                        <td>
+                                            
+                                            <?php if($rs->status=='Di Tolak'){ ?>
+                                            <p style="color:red;">DATA PEMBAYARAN TIDAK SESUI</p>
+                                            <?php }else{ ?>
+                                            <?php echo $rs->status; ?>
+                                            <?php } ?>    
+                                        </td>
                                         <td>
                                         <center>
+                                         <?php if($rs->status=='Di Tolak'){ ?>
+                                        <a  href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
+                                        Kirim Ulang
+                                        </a>
+                                        &nbsp;
+                                         <?php }else{} ?>     
                                         <a  href="user/Home/Detail_pesanan/<?php echo $rs->kode_pesanan; ?>" class="btn-sm btn-primary">
                                         Detail
                                         </a> 
@@ -82,6 +95,39 @@
                                         </td>
                                     </tr>
 
+
+<!-- Modal 1 -->
+<div class="modal fade" id="m<?php echo $rs->kode_pesanan; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">PROSES KIRIM ULANG</h4>
+      </div>
+  
+      <div class="modal-body">
+<form action="Transaksi/Kirim_ulang" method="post" enctype="multipart/form-data">
+    <input type="text" hidden name="id_pesanan" value="<?php echo $rs->id_pesanan; ?>">   
+    <input type="text"   hidden  name="id_pelanggan"  value="<?php echo $rs->id_pelanggan; ?>">
+    <input type="text" hidden  name="kode_pesanan"  value="<?php echo $rs->kode_pesanan; ?>">
+        <div class="row">
+            <div class="form-group col-md-12">
+            <label>Bukti Pembayaran</label>
+              <input  type="file" required name="userfile" class="form-control" value="">
+              <b style="font-size:12px;">Format FDF</b>
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit"   class="btn btn-primary" name="proses">SUBMIT</button>
+      </div>
+</form>
+      </div>  
+
+    </div>
+  </div>
+</div>
+<!-- Modal 1 -->  
 
 
 

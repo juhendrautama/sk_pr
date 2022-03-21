@@ -70,9 +70,23 @@
                                         <td><?php echo $rs->status; ?></td>
                                         <td>
                                         <center>
-                                        <a  href="#" class="btn-sm btn-primary" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
-                                        Konfirmasi
+                                        <?php if($rs->status=='Di Terima'){ ?> 
+                                       <a  href="#" class="btn-sm btn-success" data-toggle="modal" data-target="#m2<?php echo $rs->kode_pesanan; ?>">
+                                        Cetak Invoice
+                                        </a>   
+                                        <?php }else if($rs->status=='Di Tolak'){ ?>   
+                                        <a   class="btn btn-sm btn-warning" disabled="disabled">
+                                        Ditolak
                                         </a> 
+                                         <?php }else if($rs->status=='Pemabayaran Terverifikasi'){ ?>      
+                                        <a  href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
+                                        Konfirmasi Ulang
+                                        </a>
+                                       <?php }else{ ?>
+                                         <a  href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
+                                        Konfirmasi
+                                        </a>
+                                        <?php } ?>
                                         </center> 
 
                                         </td>
@@ -93,13 +107,40 @@
             <div class="form-group col-md-4" >
                 <input type="text" hidden name="id_pesanan" value="<?php echo $rs->id_pesanan; ?>">   
                 <input type="text"   hidden  name="id_pelanggan"  value="<?php echo $rs->id_pelanggan; ?>">
-                <input type="text" class="form-control" readonly  name="a"  value="B<?php echo $rs->kode_pesanan; ?>">
+                 <input type="text" hidden  name="kode_pesanan"  value="<?php echo $rs->kode_pesanan; ?>">
+                <input type="text" class="form-control" readonly  name="a"  value="B<?php echo $kodepesanan=$rs->kode_pesanan; ?>">
             </div>
-            <div class="form-group col-md-4">
-                 <a href="img/bukti_bayar/<?php echo $rs->bukti_pembayaran; ?>" target="_blank" class="btn btn-success" >Lihat Bukti Pembayaran</a>
-            </div>
+            
         </div>
+        <hr>
+        <label>Detail pesanan</label>
 
+        <ol>
+        <?php $tampil_detail_pesanan_user=$this->M_crud_produk->tampil_detail_pesanan_user($kodepesanan);?>
+
+        <?php
+        $grentot_pesanan=0;
+        $grento_total_harga=0;
+        $no=1; 
+        foreach($tampil_detail_pesanan_user->result()as $rs2){ ?> 
+
+            <li>
+                <?php echo $rs2->nama_produk; ?> : <?php echo $pesanan=$rs2->jumlah_pesanan; ?>, Harga : <?php echo $hasil_rupiah = "Rp " . number_format($harga=$rs2->harga,2,',','.');?>
+                
+            </li>
+            <?php 
+
+                $grentot_pesanan=$grentot_pesanan + $pesanan;
+                $grento_total_harga=$grento_total_harga + $harga;
+
+             ?>
+            <?php } ?>
+            <hr>
+            Total Pesanan : <?php echo $grentot_pesanan; ?><br>
+            Total Harga : <?php echo $hasil_rupiah2 = "Rp " . number_format($grento_total_harga,2,',','.');?>
+            <hr>
+            <a href="img/bukti_bayar/<?php echo $rs->bukti_pembayaran; ?>" target="_blank" class="btn btn-success" >Lihat Bukti Pembayaran</a>
+        </ol>
             
            
         <hr>
@@ -115,8 +156,6 @@
                 </select>                                                                       
             </div>
         </div>      
-        
-           
 
       </div>
       <div class="modal-footer">
@@ -138,11 +177,21 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Bukti Pembelian</h4>
+        <h4 class="modal-title" id="myModalLabel">PROSES CETAK INVOICE</h4>
       </div>
   
       <div class="modal-body">
-
+<form action="adminpanel/Data_pembelian/Proses_cetak_invoice" method="post">
+        <div class="row">
+            <div class="form-group col-md-12">
+                <input required class="form-control" type="text" name="no_telpon_super" value="" placeholder="No Supir">
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary" name="proses"><span class="glyphicon glyphicon-print"></span> CETAK</button>
+      </div>
+</form>
       </div>  
 
     </div>

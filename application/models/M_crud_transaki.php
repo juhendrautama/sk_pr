@@ -157,10 +157,10 @@ function kode_pesanan_detail()   {
 
 	function upload_bukti(){
 			$config['upload_path'] = 'img/bukti_bayar';
-			$config['allowed_types'] = 'fdf';
-			$config['max_size']	= '10000';
-			$config['max_width']  = '10000';
-			$config['max_height']  = '10000';
+			$config['allowed_types'] = '*';
+			$config['max_size']	= '100000';
+			$config['max_width']  = '100000';
+			$config['max_height']  = '100000';
 			$this->load->library('upload',$config);
 			
 			
@@ -208,6 +208,43 @@ function Simpan_pesanan(){
 
 	
 
+		function upload_bukti2(){
+			$config['upload_path'] = 'img/bukti_bayar';
+			$config['allowed_types'] = '*';
+			$config['max_size']	= '100000';
+			$config['max_width']  = '100000';
+			$config['max_height']  = '100000';
+			$this->load->library('upload',$config);
+			
+			
+		if ( ! $this->upload->do_upload()){
+			$this->load->view('user/data_pesanan');
+		}
+		}			
+
+		function Kirim_ulang($id=''){
+			$dt=$this->upload->data();
+			$bukti_pembayaran=$dt['orig_name'];
+			$id_pesanan=$this->db->escape_str($this->input->post('id_pesanan'));
+			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
+			$kode_pesanan=$this->db->escape_str($this->input->post('kode_pesanan'));
+
+			$this->db->where('id_pesanan',$id_pesanan);
+			$query = $this->db->get('tbl_pesanan');
+			$row = $query->row();
+
+			unlink("img/bukti_bayar/$row->bukti_pembayaran");
+
+			$sql=$this->db->query("
+			UPDATE
+					  `tbl_pesanan`
+					SET
+					`bukti_pembayaran` = '$bukti_pembayaran',
+					  `status` = 'Pemabayaran Terverifikasi'
+					WHERE `id_pesanan` = '$id_pesanan' and  `id_pelanggan` ='$id_pelanggan' and `kode_pesanan`='$kode_pesanan'; 
+			");
+		return $sql ;	
+		}
 
 
 }

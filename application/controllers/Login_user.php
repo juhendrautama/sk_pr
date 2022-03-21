@@ -22,7 +22,7 @@ class Login_user extends CI_Controller {
 	function sessionku ()
 
 		{
-			$berhasil=$this->session->userdata('login');
+			$berhasil=$this->session->userdata('login_user');
 			if (!isset($berhasil) || $berhasil !=true )
 			{
 				redirect('Home');
@@ -70,7 +70,7 @@ class Login_user extends CI_Controller {
 
 	function logout()
 		{
-			$this->session->sess_destroy();
+			unset($_SESSION['login_user']);
 			redirect('Home');
 			$this->keluar();
 		}
