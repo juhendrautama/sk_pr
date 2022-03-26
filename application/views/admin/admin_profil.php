@@ -69,8 +69,8 @@
                                         <td >
                                             <center>
 
-                                            <a  href="adminpanel/Admin_profil/Ubah_profil/<?php echo $rs->id_profil; ?>" class="btn-sm btn-danger">Ubah</a>    
-                                            <a Onclick="return confirm('apakah yakin ingin di Hapus ?');" href="adminpanel/Admin_profil/Hapus_profil/<?php echo $rs->id_profil; ?>" class="btn-sm btn-danger">Hapus</a>
+                                            <a  style="text-decoration:none" href="adminpanel/Admin_profil/Ubah_profil/<?php echo $rs->id_profil; ?>" class="btn-sm btn-danger">Ubah</a>    
+                                            <a style="text-decoration:none" Onclick="return confirm('apakah yakin ingin di Hapus ?');" href="adminpanel/Admin_profil/Hapus_profil/<?php echo $rs->id_profil; ?>" class="btn-sm btn-danger">Hapus</a>
 
                                            </center>     
                                         </td>

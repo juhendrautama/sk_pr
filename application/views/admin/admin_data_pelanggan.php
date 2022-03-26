@@ -69,7 +69,7 @@
                                         <td >
                                             <center>
 
-                                            <a  href="adminpanel/Admin_profil/Ubah_profil/<?php echo $rs->id_pelanggan; ?>" class="btn-sm btn-danger">Ubah</a>    
+                                            <a style="text-decoration:none" href="adminpanel/Admin_profil/Ubah_profil/<?php echo $rs->id_pelanggan; ?>" class="btn-sm btn-danger">Ubah</a>    
                                             
 
                                            </center>     

@@ -11,6 +11,7 @@ class Home extends CI_Controller {
 			parent::__construct();
 			$this->load->model('M_crud_produk');
 			$this->load->model('M_crud_pelanggan');
+			$this->load->model('M_crud_sopir');
 			$this->load->library("session");
 			$this->sessionku();
 

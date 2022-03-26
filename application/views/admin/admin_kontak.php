@@ -65,7 +65,7 @@
                                         <td >
                                         <center>
 
-                                        <a  href="adminpanel/Admin_kontak/Ubah_kontak/<?php echo $rs->id_kontak; ?>" class="btn-sm btn-danger">Ubah</a> 
+                                        <a style="text-decoration:none" href="adminpanel/Admin_kontak/Ubah_kontak/<?php echo $rs->id_kontak; ?>" class="btn-sm btn-danger">Ubah</a> 
 
                                            
                                        

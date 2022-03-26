@@ -33,14 +33,21 @@
                              </div>
                              <div class="col-md-7">
                                 <?php
-                                 $id=$tampil_produk_detail->id_produk;
-                                 $jumlah_pesanan=$this->M_crud_transaki->tampil_data_stok_order($id);
+
+                                $id=$tampil_produk_detail->id_produk;
+                                $query_tot_pesanan=$this->M_crud_transaki->tampil_data_stok_order($id)->row();
                                
+                                $jumlah_pesanan=$query_tot_pesanan->tot_pesanan;
+
+
+
                                  if (empty($jumlah_pesanan)) {
                                    $jumlah_pesanan='0';
                                  }else{
-                                   $jumlah_pesanan=$jumlah_pesanan->jumlah_pesanan; 
+                                   $jumlah_pesanan=$query_tot_pesanan->tot_pesanan; 
                                  }
+                                 
+                                 
                                  $stok=$tampil_produk_detail->stok; 
                                 $total_stok=$stok-$jumlah_pesanan;
                                 ?>

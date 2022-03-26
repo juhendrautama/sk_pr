@@ -75,8 +75,14 @@
                                             
                                             <?php if($rs->status=='Di Tolak'){ ?>
                                             <p style="color:red;">DATA PEMBAYARAN TIDAK SESUI</p>
+                                            <?php }else if($rs->status=='Di Kirim'){ ?>
+                                            <?php
+                                            $id=$rs->id_sopir;   
+                                            $tampil_data_sopir=$this->M_crud_sopir->tampil_id_sopir($id); ?>    
+                                            <p style="color:green;">NO SUPIR : <a href="tel:<?php echo $tampil_data_sopir->no_tlp; ?>" target="_blank"><?php echo $tampil_data_sopir->no_tlp; ?></a></p>
                                             <?php }else{ ?>
-                                            <?php echo $rs->status; ?>
+
+                                            <?php echo'Pesanan '.$rs->status; ?>
                                             <?php } ?>    
                                         </td>
                                         <td>
@@ -86,10 +92,16 @@
                                         Kirim Ulang
                                         </a>
                                         &nbsp;
-                                         <?php }else{} ?>     
+                                         <?php }else if($rs->status=='Di Kirim'){ ?>    
+                                          <a  href="Transaksi/Terima_barang/<?php echo $rs->id_pesanan; ?>/<?php echo $rs->kode_pesanan; ?>/<?php echo $rs->id_pelanggan ?>/<?php echo $rs->id_sopir; ?>" class="btn-sm btn-danger">
+                                        Komfirmasi Terima Barang
+                                        </a>  
+                                        &nbsp;
+                                        <?php }else{ ?>    
                                         <a  href="user/Home/Detail_pesanan/<?php echo $rs->kode_pesanan; ?>" class="btn-sm btn-primary">
-                                        Detail
+                                        Detail Pesanan
                                         </a> 
+                                    <?php } ?>
                                         </center> 
 
                                         </td>

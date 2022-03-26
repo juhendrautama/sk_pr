@@ -43,7 +43,7 @@
                         <div class="panel-heading">
                             DATA  PRODUK
                               <hr>
-                            <a   class="btn btn-info" href="#" data-toggle="modal" data-target="#myModal">
+                            <a style="text-decoration:none"  class="btn btn-info" href="#" data-toggle="modal" data-target="#myModal">
                             <i class="icon-edit icon-white"></i>TAMBAH DATA
                             </a>
                         </div>
@@ -160,11 +160,11 @@
                                         <td><?php  echo date('d F Y', strtotime($rs->tgl_tambah)); ?></td>
                                         <td >
                                         <center>
-                                        <a  href="#" class="btn-sm btn-primary"  data-toggle="modal" data-target="#m<?php echo $rs->id_produk; ?>">
+                                        <a  style="text-decoration:none" href="#" class="btn-sm btn-primary"  data-toggle="modal" data-target="#m<?php echo $rs->id_produk; ?>">
                                         Ubah
                                         </a> 
                                         &nbsp;
-                                        <a Onclick="return confirm('apakah yakin ingin di Hapus ?');" href="adminpanel/Produk/Hapus_data/<?php echo $rs->id_produk; ?>" class="btn-sm btn-danger">Hapus</a>
+                                        <a style="text-decoration:none" Onclick="return confirm('apakah yakin ingin di Hapus ?');" href="adminpanel/Produk/Hapus_data/<?php echo $rs->id_produk; ?>" class="btn-sm btn-danger">Hapus</a>
                                         </center> 
 
                                         </td>

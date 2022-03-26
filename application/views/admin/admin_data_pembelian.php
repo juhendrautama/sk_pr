@@ -47,7 +47,6 @@
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
-                           
                                 <thead>
                                     <tr style="font-size:11px; text-align: center;">
                                         <th>No</th>
@@ -61,7 +60,7 @@
                                 </thead>
                                 <tbody>
                                  <?php $no=1; foreach($tampil_data_pembelian->result()as $rs){?> 
-                                    <tr class="odd gradeX" style="font-size:11px; text-align: center;">
+                                    <tr class="odd gradeX" style="font-size:11px; text-align: center; ">
                                         <td><?php echo $no ?></td>
                                         <td><?php echo $rs->kode_pesanan; ?></td>
                                         <td><?php echo $rs->jumlah_pesan; ?></td>
@@ -71,19 +70,37 @@
                                         <td>
                                         <center>
                                         <?php if($rs->status=='Di Terima'){ ?> 
-                                       <a  href="#" class="btn-sm btn-success" data-toggle="modal" data-target="#m2<?php echo $rs->kode_pesanan; ?>">
-                                        Cetak Invoice
+                                       <a  href="#" class="btn-sm btn-primary" style="text-decoration:none" data-toggle="modal" data-target="#m2<?php echo $rs->kode_pesanan; ?>">
+                                        <span class="glyphicon glyphicon-send"></span> 
+                                        Kirim Pesanan
                                         </a>   
                                         <?php }else if($rs->status=='Di Tolak'){ ?>   
-                                        <a   class="btn btn-sm btn-warning" disabled="disabled">
+                                        <a   class="btn btn-sm btn-warning" style="text-decoration:none" disabled="disabled">
                                         Ditolak
                                         </a> 
                                          <?php }else if($rs->status=='Pemabayaran Terverifikasi'){ ?>      
-                                        <a  href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
+                                        <a  href="#" class="btn-sm btn-danger" style="text-decoration:none" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
                                         Konfirmasi Ulang
                                         </a>
+                                       <?php }else if($rs->status=='Di Kirim'){ ?> 
+
+                                            <?php if($rs->kode_invoice==''){ ?>
+                                                <a  href="#"  class="btn-sm btn-success" style="text-decoration:none" data-toggle="modal" data-target="#m3<?php echo $rs->kode_pesanan; ?>">
+                                                Proses Cetak Invoice
+                                                </a>   
+                                            <?php }else{ ?>    
+                                                <a  href="adminpanel/Data_pembelian/Cetak_invoice/<?php echo $rs->kode_pesanan; ?>" target="_blank" class="btn-sm btn-success" style="text-decoration:none">
+                                                <span class="glyphicon glyphicon-print"></span>
+                                                                  
+                                                 Cetak Invoice
+                                                </a>
+                                            <?php } ?>
+                                    <?php }else if($rs->status=='Selesai'){ ?>
+                                       <a   class="btn btn-sm btn-warning" style="text-decoration:none" disabled="disabled">
+                                        Proses Selesai
+                                        </a> 
                                        <?php }else{ ?>
-                                         <a  href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
+                                         <a  href="#" class="btn-sm btn-danger" style="text-decoration:none" data-toggle="modal" data-target="#m<?php echo $rs->kode_pesanan; ?>">
                                         Konfirmasi
                                         </a>
                                         <?php } ?>
@@ -177,19 +194,32 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">PROSES CETAK INVOICE</h4>
+        <h4 class="modal-title" id="myModalLabel">PROSES PENGIRIMAN BARANG</h4>
       </div>
   
       <div class="modal-body">
-<form action="adminpanel/Data_pembelian/Proses_cetak_invoice" method="post">
+<form action="adminpanel/Data_pembelian/Proses_kirim_barang" method="post">
+    <input type="text" hidden name="id_pesanan" value="<?php echo $rs->id_pesanan; ?>">   
+    <input type="text"   hidden  name="id_pelanggan"  value="<?php echo $rs->id_pelanggan; ?>">
+    <input type="text" hidden  name="kode_pesanan"  value="<?php echo $rs->kode_pesanan; ?>">
         <div class="row">
             <div class="form-group col-md-12">
-                <input required class="form-control" type="text" name="no_telpon_super" value="" placeholder="No Supir">
+                
+                <select name="id_sopir" class="form-control">
+                    <option value="">Pilih Sopir</option>
+                    
+                    <?php foreach($tampil_data_sopir->result() as $data_sopir){ ?>
+                        <?php if($data_sopir->status=='1'){ ?>   
+                         <option value="<?php echo $data_sopir->id_sopir; ?>"><?php echo $data_sopir->nama; ?></option>
+                    <?php }else if($data_sopir->status=='2'){}?>
+                    
+                    <?php } ?>    
+                </select>
             </div>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit"  class="btn btn-primary" name="proses"><span class="glyphicon glyphicon-print"></span> CETAK</button>
+        <button type="submit"  class="btn btn-primary" name="proses"><span class="glyphicon glyphicon-send"></span> KIRIM</button>
       </div>
 </form>
       </div>  
@@ -199,6 +229,36 @@
 </div>
 <!-- Modal 2 -->  
 
+<!-- Modal 3 -->
+<div class="modal fade" id="m3<?php echo $rs->kode_pesanan; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">PROSES CETAK INVOICE</h4>
+      </div>
+  
+      <div class="modal-body">
+<form action="adminpanel/Data_pembelian/Proses_cetak_invoice" method="post">
+    <input type="text" hidden name="id_pesanan" value="<?php echo $rs->id_pesanan; ?>">   
+    <input type="text"   hidden  name="id_pelanggan"  value="<?php echo $rs->id_pelanggan; ?>">
+    <input type="text" hidden  name="kode_pesanan"  value="<?php echo $rs->kode_pesanan; ?>">
+        <div class="row">
+            <div class="form-group col-md-12">
+             <input required type="text" class="form-control" name="kode_invoice" placeholder="Kode Invoice" value="<?php echo $rs->kode_invoice; ?>">
+            </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary" name="proses"><span class="glyphicon glyphicon-print"></span>  CETAK</button>
+      </div>
+</form>
+      </div>  
+
+    </div>
+  </div>
+</div>
+<!-- Modal 3 --> 
 
 
 

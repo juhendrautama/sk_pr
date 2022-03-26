@@ -137,7 +137,7 @@ function Hapus_data($id=''){
 
 //proses data pembelian admin
 	function tampil_data_pembelian(){
-			$sql=$this->db->query("select	id_pesanan, id_pelanggan, kode_pesanan, bukti_pembayaran, jumlah_pesan, total_harga, tanggal_pesan, status, no_telpon_super FROM tbl_pesanan  ");
+			$sql=$this->db->query("select	id_pesanan, id_pelanggan, kode_pesanan, bukti_pembayaran, jumlah_pesan, total_harga, tanggal_pesan, status, id_sopir, kode_invoice FROM tbl_pesanan  ");
 			return $sql;
 		}
 	function Simpan_data_konfirmasi(){
@@ -154,7 +154,50 @@ function Hapus_data($id=''){
 			");
 		return $sql ;	
 		}		
+
+	function Simpan_data_pengiriman(){
+			$id_pesanan=$this->db->escape_str($this->input->post('id_pesanan'));
+			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
+			$kode_pesanan=$this->db->escape_str($this->input->post('kode_pesanan'));
+			$id_sopir=$this->db->escape_str($this->input->post('id_sopir'));
+			$sql=$this->db->query("
+					UPDATE
+					  `tbl_pesanan`
+					SET
+
+					  `status` = 'Di Kirim',
+					  `id_sopir` = '$id_sopir'
+					WHERE `id_pesanan` = '$id_pesanan' and  `id_pelanggan` ='$id_pelanggan' and `kode_pesanan`='$kode_pesanan';
+			");
+		return $sql ;	
+		}			
 //proses data pembelian admin		
+
+
+//data invoice
+function tampil_pesanan_invoice($kode_pesanan){
+			$sql=$this->db->query("select	* FROM tbl_pesanan where kode_pesanan='$kode_pesanan' ");
+			return $sql->row();
+		}
+	function tampil_detail_pesanan_invoice($kode_pesanan=''){
+			$sql=$this->db->query("select	* FROM tbl_detail_pesanan where kode_pesanan='$kode_pesanan' ");
+			return $sql;
+		}
+	function Proses_cetak_invoice(){
+			$id_pesanan=$this->db->escape_str($this->input->post('id_pesanan'));
+			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
+			$kode_pesanan=$this->db->escape_str($this->input->post('kode_pesanan'));
+			$kode_invoice=$this->db->escape_str($this->input->post('kode_invoice'));
+			$sql=$this->db->query("
+					UPDATE
+					  `tbl_pesanan`
+					SET
+					  `kode_invoice` = '$kode_invoice'
+					WHERE `id_pesanan` = '$id_pesanan' and  `id_pelanggan` ='$id_pelanggan' and `kode_pesanan`='$kode_pesanan';
+			");
+		return $sql ;	
+		}		
+//data invoice		
 
 
 }

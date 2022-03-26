@@ -88,8 +88,9 @@ function proses_tambah_pesanan(){
 		}		
 
 function tampil_data_stok_order($id){
-			$sql=$this->db->query("select	* FROM tbl_detail_pesanan where status='O' and id_produk='$id'  ");
-			return $sql->row();
+
+			$sql=$this->db->query("SELECT sum(jumlah_pesanan) as tot_pesanan FROM tbl_detail_pesanan where status='O' and id_produk='$id' ");
+			return $sql;
 		}	
 
 function hapus_data_keranjang($id_detail_pesanan=''){
@@ -241,6 +242,19 @@ function Simpan_pesanan(){
 					SET
 					`bukti_pembayaran` = '$bukti_pembayaran',
 					  `status` = 'Pemabayaran Terverifikasi'
+					WHERE `id_pesanan` = '$id_pesanan' and  `id_pelanggan` ='$id_pelanggan' and `kode_pesanan`='$kode_pesanan'; 
+			");
+		return $sql ;	
+		}
+
+
+		function Terima_barang($id_pesanan,$kode_pesanan,$id_pelanggan){
+
+			$sql=$this->db->query("
+			UPDATE
+					  `tbl_pesanan`
+					SET
+					  `status` = 'Selesai'
 					WHERE `id_pesanan` = '$id_pesanan' and  `id_pelanggan` ='$id_pelanggan' and `kode_pesanan`='$kode_pesanan'; 
 			");
 		return $sql ;	

@@ -15,6 +15,7 @@ class Transaksi extends CI_Controller {
 			$this->load->model('M_crud_kontak');
 			$this->load->model('M_crud_kat_produk');
 			$this->load->model('M_crud_produk');
+			$this->load->model('M_crud_sopir');
 			$this->load->library("session");
 			$this->sessionku();
 
@@ -164,6 +165,19 @@ public function Simpan_pesanan(){
 			}
 	}
 //proses kirim ulang bukti pembayaran
+
+//proses terima barang
+	public function Terima_barang($id_pesanan,$kode_pesanan,$id_pelanggan,$id_sopir){
+		$hasil1=$this->M_crud_transaki->Terima_barang($id_pesanan,$kode_pesanan,$id_pelanggan);
+		$hasil=$this->M_crud_sopir->Ubah_status_sopir2($id_sopir,$hasil1);
+		if ($hasil){ ?>
+					<script type="text/javascript">
+						alert('DATA TERSIMPAN');window.location="<?php echo base_url() ?>user/Home/Data_pesanan/<?php echo $id_pelanggan ?>";
+					</script>
+				<?php }
+			
+	}
+
 
 }
 

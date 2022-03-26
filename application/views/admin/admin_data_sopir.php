@@ -41,7 +41,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            DATA KATEGORI PRODUK
+                            DATA SOPIR
                               <hr>
                             <a  style="text-decoration:none" class="btn btn-info" href="#" data-toggle="modal" data-target="#myModal">
                             <i class="icon-edit icon-white"></i>TAMBAH DATA
@@ -55,15 +55,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Tambah Data Kategori Produk</h4>
+        <h4 class="modal-title" id="myModalLabel">Tambah Data Sopir</h4>
       </div>
-    <form action="adminpanel/Kategori_produk/Simpan_data" method="post">
+    <form action="adminpanel/Data_sopir/Simpan_data" method="post">
       <div class="modal-body">
 
-        
-            <div class="form-group">
-                <input type="text" class="form-control" id="recipient-name" name="nama" placeholder="NAMA KATEGORI PRODUK">
+        <div class="row">
+             <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="recipient-name" name="nama" placeholder="NAMA ">
             </div>
+             <div class="col-md-12 form-group">
+                <input type="number" class="form-control" id="recipient-name" name="no_tlp" placeholder="NO TELPON ">
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="recipient-name" name="plat" placeholder="PLAT ">
+            </div>
+        </div>
+           
            
 
 
@@ -88,44 +96,53 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama</th>
-                                        <th>Tgl</th>
+                                        <th>No Telpon</th>
+                                        <th>Plat</th>
                                         <th><center>Aksi</center></th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 <?php $no=1; foreach($tampil_data_kat_produk->result()as $rs){?> 
+                                 <?php $no=1; foreach($tampil_data_sopir->result()as $rs){?> 
                                     <tr class="odd gradeX">
-                                        <td><?php echo $no ?></td>
-                                        <td><?php echo $rs->nama; ?></td>
-                                        <td><?php echo $rs->tgl; ?></td>
-                                        <td >
+                                     <td><?php echo $no ?></td>
+                                     <td><?php echo $rs->nama; ?></td>
+                                     <td><?php echo $rs->no_tlp; ?></td>
+                                     <td><?php echo $rs->plat; ?></td>
+                                     <td >
                                         <center>
-                                        <a  style="text-decoration:none" href="#" class="btn-sm btn-primary"  data-toggle="modal" data-target="#m<?php echo $rs->id_kategori; ?>">
+                                        <a  style="text-decoration:none" href="#" class="btn-sm btn-primary"  data-toggle="modal" data-target="#m<?php echo $rs->id_sopir; ?>">
                                         Ubah
                                         </a> 
                                         &nbsp;
-                                        <a style="text-decoration:none" Onclick="return confirm('apakah yakin ingin di Hapus ?');" href="adminpanel/Kategori_produk/Hapus_data/<?php echo $rs->id_kategori; ?>" class="btn-sm btn-danger">Hapus</a>
+                                        <a style="text-decoration:none" Onclick="return confirm('apakah yakin ingin di Hapus ?');" href="adminpanel/Data_sopir/Hapus_data/<?php echo $rs->id_sopir; ?>" class="btn-sm btn-danger">Hapus</a>
                                         </center> 
-
-                                        </td>
+                                     </td>
                                     </tr>
 
 <!-- Modal -->
-<div class="modal fade" id="m<?php echo $rs->id_kategori; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div class="modal fade" id="m<?php echo $rs->id_sopir; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Ubah Data Kategori Produk</h4>
+        <h4 class="modal-title" id="myModalLabel">Ubah Data Sopir </h4>
       </div>
-    <form action="adminpanel/Kategori_produk/Simpan_data_ubah" method="post">
+    <form action="adminpanel/Data_sopir/Simpan_data_ubah" method="post">
       <div class="modal-body">
 
-        
-            <div class="form-group">
-                <input type="text" hidden name="id_kategori" value="<?php echo $rs->id_kategori ?>">
-                <input type="text" class="form-control" id="recipient-name" name="nama" placeholder="NAMA PRODUK" value="<?php echo $rs->nama; ?>">
+        <input type="text"  name="id_sopir" hidden value="<?php echo $rs->id_sopir; ?>">
+
+        <div class="row">
+             <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="recipient-name" name="nama" placeholder="NAMA " value="<?php echo $rs->nama; ?>">
             </div>
+             <div class="col-md-12 form-group">
+                <input type="number" class="form-control" id="recipient-name" name="no_tlp" placeholder="NO TELPON " value="<?php echo $rs->no_tlp; ?>">
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="recipient-name" name="plat" placeholder="PLAT " value="<?php echo $rs->plat; ?>">
+            </div>
+        </div>
            
 
 
