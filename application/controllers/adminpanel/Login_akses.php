@@ -40,7 +40,7 @@ class Login_akses extends CI_Controller {
 					$ok=$hsl->row();
 					$data=array(
 						'id_admin'=>$ok->id_admin,
-						'nama'=>$ok->nama,
+						'nama_admin'=>$ok->nama_admin,
 						'user'=>$ok->user,
 						'pass'=>$ok->pass,
 						'alamat'=>$ok->alamat,

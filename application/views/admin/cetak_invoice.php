@@ -75,12 +75,15 @@
                
           </td>
           <td><?php echo $data_produk->nama_produk;  ?></td>
-          <td><?php echo $tot=$tot+$rs->jumlah_pesanan; ?></td>
+          <td><?php echo $rs->jumlah_pesanan; ?></td>
      </tr>
+     <?php $tot = $tot + $rs->jumlah_pesanan; ?>
      <?php $no++; } ?>
      <tr>
           <td colspan="3">TOTAL : </td>
-          <td align="center"><?php echo $tot; ?></td>
+          <td align="center"><?php echo $tot; ?>
+               
+          </td>
      </tr>
 </table>
 <br>
@@ -89,13 +92,13 @@
      <tr>
           <td>
                <p>Dibuat</p>
-               <br><br><br>
+               <br><br><br><br>
                <p>Gudang</p>
           </td>
 
             <td>
                <p>Diketahui</p>
-               <br><br><br>
+               <br><br><br><br>
                <p>Periksa</p>
           </td>
 
@@ -120,7 +123,7 @@
                </table>
           </td>
 
-          <td><br><br><br>Penerima</td>
+          <td><br><br><br><br><br>Penerima</td>
      </tr>
     
 </table>

@@ -10,20 +10,7 @@
  
   <hr><hr><br>
 
-
-
-
-
-
-  <main id="main">
-
-  
-
-   
-
-   
-
-
+<main id="main">
 
    <!-- GAMBAR -->
      <!-- ======= Portfolio Section ======= -->
@@ -54,7 +41,7 @@
                               <?php
                               $grentot_pesanan=0;
                               $grento_total_harga=0;
-                               $no=1; foreach($tampil_data_keranjang_pel->result()as $rs) {?>
+                              $no=1; foreach($tampil_data_keranjang_pel->result()as $rs) {?>
                                 
 
                               <tr style="font-size:12px;">
@@ -66,10 +53,14 @@
                                   //proses stok
                                     $id_produk = $rs->id_produk;
                                       $stok = $this->M_crud_produk->tampil_data_stok($id_produk)->row();
-                                      $jumlah_pesanan_order1=$this->M_crud_transaki->tampil_data_stok_order($id_produk);
-                                      $jumlah_pesanan_order=@$jumlah_pesanan_order1->jumlah_pesanan;
-                                      if (empty($jumlah_pesanan_order)){
-                                        $jumlah_pesanan_order= 0;
+                                      
+                                       $jumlah_pesanan_order1=$this->M_crud_transaki->tampil_data_stok_order($id_produk)->row();
+
+
+
+                                      $jumlah_pesanan_order=@$jumlah_pesanan_order1->tot_pesanan;
+                                      if ($jumlah_pesanan_order==''){
+                                        $jumlah_pesanan_order=0;
                                       }else{
                                         $jumlah_pesanan_order;
                                       }
@@ -81,7 +72,7 @@
                                     // echo '<br>';
 
 
-                                    $jumlah_pesanan_order;
+                                  
                                     $jumlah_pesanan_keranjang = $rs->jumlah_pesanan;
 
                                       $stok = $stok->stok;

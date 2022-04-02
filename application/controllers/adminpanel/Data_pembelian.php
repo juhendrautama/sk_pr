@@ -17,6 +17,7 @@ class Data_pembelian extends CI_Controller {
 		}
 
 public function index(){	
+		$data['buat_kode_invoice'] = $this->M_crud_produk->buat_kode_invoice();
 		$data['tampil_data_sopir']=$this->M_crud_sopir->tampil_data_sopir();
 		$data['tampil_data_pembelian']=$this->M_crud_produk->tampil_data_pembelian();
 		$this->load->view('admin/admin_data_pembelian',$data);
@@ -59,13 +60,13 @@ public function Proses_kirim_barang(){
 
 
 
-public function Proses_cetak_invoice(){
+public function Proses_input_no_invoice(){
 		if(isset($_POST['proses'])){
 		$kode_pesanan=$this->db->escape_str($this->input->post('kode_pesanan'));	
 		$hasil2=$this->M_crud_produk->Proses_cetak_invoice();
 		if ($hasil2){ ?>
 				<script type="text/javascript">
-						alert('Data Disimpan');window.location="<?php echo base_url() ?>adminpanel/Data_pembelian/Cetak_invoice/<?php echo $kode_pesanan ?>";
+						alert('Data Disimpan');window.location="<?php echo base_url() ?>adminpanel/Data_pembelian";
 					</script>
 				<?php }
 			}else{

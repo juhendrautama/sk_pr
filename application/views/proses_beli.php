@@ -51,6 +51,7 @@
     <input type="text" hidden name="kode_pesanan2" value="<?php echo $kode_pesanan_barang; ?>">
     <input type="text" hidden name="status2" value="PROSES">
     <input type="text" hidden  name="id_pelanggan2" value="<?php echo $id_pelanggan ?>">
+
     </td>
   </tr>
   <tr>
@@ -87,6 +88,7 @@
                                  <td>
                                   <?php echo $rs->nama_produk; ?>
                                   <input type="text" hidden name="nama_produk[]" value="<?php echo $rs->nama_produk; ?>"> 
+
                                  </td>
                                    <td>
                                     <?php echo $harga_rp= "Rp " . number_format($rs->harga,0,',','.'); ?>
@@ -128,6 +130,7 @@
                               
 
                             <?php $no++; } ?>
+
 
                             <tr>
                               <td colspan="3">Gran total</td>

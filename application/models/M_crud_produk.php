@@ -16,6 +16,11 @@ function tampil_data_produk(){
 			return $sql;
 		}
 
+function tampil_data_produk_id($id){
+			$sql=$this->db->query("select	* FROM tbl_produk where id_produk='$id'");
+			return $sql;
+		}		
+
 
 function buat_kode()   {    
   $this->db->select('RIGHT(tbl_produk.kode_produk,2) as kode', FALSE);
@@ -137,7 +142,7 @@ function Hapus_data($id=''){
 
 //proses data pembelian admin
 	function tampil_data_pembelian(){
-			$sql=$this->db->query("select	id_pesanan, id_pelanggan, kode_pesanan, bukti_pembayaran, jumlah_pesan, total_harga, tanggal_pesan, status, id_sopir, kode_invoice FROM tbl_pesanan  ");
+			$sql=$this->db->query("select	id_pesanan, id_pelanggan, kode_pesanan, bukti_pembayaran, jumlah_pesan, total_harga, tanggal_pesan, status, id_sopir, kode_invoice, tgl_invoice, no_urut_kode_invoice FROM tbl_pesanan  ");
 			return $sql;
 		}
 	function Simpan_data_konfirmasi(){
@@ -188,16 +193,63 @@ function tampil_pesanan_invoice($kode_pesanan){
 			$id_pelanggan=$this->db->escape_str($this->input->post('id_pelanggan'));
 			$kode_pesanan=$this->db->escape_str($this->input->post('kode_pesanan'));
 			$kode_invoice=$this->db->escape_str($this->input->post('kode_invoice'));
+			$no_urut_kode_invoice=$this->db->escape_str($this->input->post('no_urut_kode_invoice'));
+			$tgl_invoice=Date("Y-m-d");
 			$sql=$this->db->query("
 					UPDATE
 					  `tbl_pesanan`
 					SET
-					  `kode_invoice` = '$kode_invoice'
+					  `kode_invoice` = '$kode_invoice',
+					  `tgl_invoice` = '$tgl_invoice',
+					  `no_urut_kode_invoice` = '$no_urut_kode_invoice'
 					WHERE `id_pesanan` = '$id_pesanan' and  `id_pelanggan` ='$id_pelanggan' and `kode_pesanan`='$kode_pesanan';
 			");
 		return $sql ;	
 		}		
+
+function buat_kode_invoice()   {    
+  $this->db->select('RIGHT(tbl_pesanan.no_urut_kode_invoice,2) as kode', FALSE);
+  $this->db->order_by('no_urut_kode_invoice','DESC');    
+  $this->db->limit(1);     
+  $query = $this->db->get('tbl_pesanan');      //cek dulu apakah ada sudah ada kode di tabel.    
+  if($query->num_rows() <> 0){       
+   //jika kode ternyata sudah ada.      
+   $data = $query->row();      
+   $kode = intval($data->kode) + 1;     
+  }
+  else{       
+   //jika kode belum ada      
+   $kode = 1;     
+  }
+  $kodemax = str_pad($kode, 2, "0", STR_PAD_LEFT);    
+  $kodejadi = "0".$kodemax;     
+  return $kodejadi;  
+ }	
+	
 //data invoice		
 
+
+
+ ///qury laporan
+ 	function tampil_data_pembelian_laporan(){
+			$sql=$this->db->query("select	* FROM tbl_pesanan  ");
+			return $sql;
+		}
+	function tampil_data_pesanan($kode_pesanan){
+			$sql=$this->db->query("select	* FROM tbl_pesanan where kode_pesanan='$kode_pesanan' ");
+			return $sql->row();
+		}	
+
+	function tampil_data_cari_laporan(){
+			$tgl1=$this->db->escape_str($this->input->post('tgl1'));
+			$tgl2=$this->db->escape_str($this->input->post('tgl2'));
+			$sql=$this->db->query("SELECT	* FROM tbl_pesanan WHERE tgl_invoice BETWEEN '$tgl1' AND '$tgl2'");
+			return $sql;
+		}		
+
+		function cetak_laporan($tgl1,$tgl2){
+			$sql=$this->db->query("SELECT	* FROM tbl_pesanan WHERE tgl_invoice BETWEEN '$tgl1' AND '$tgl2'");
+			return $sql;
+		}			
 
 }

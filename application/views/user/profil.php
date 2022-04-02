@@ -82,10 +82,7 @@
                                     <label>Tanggal Lahir</label>
                                    <input type="date" name="tgl_lahir" class="form-control" value="<?php echo $tampil_data_profil_user->tgl_lahir; ?>" placeholder="tgl lahir">
                                </div>
-                           </div>
-
-                         
-
+                            </div>
                             <br>
                             <div class="row">                               
                                 <div class="col-md-6">

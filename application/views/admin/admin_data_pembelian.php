@@ -86,7 +86,7 @@
 
                                             <?php if($rs->kode_invoice==''){ ?>
                                                 <a  href="#"  class="btn-sm btn-success" style="text-decoration:none" data-toggle="modal" data-target="#m3<?php echo $rs->kode_pesanan; ?>">
-                                                Proses Cetak Invoice
+                                                Proses Input No Invoice
                                                 </a>   
                                             <?php }else{ ?>    
                                                 <a  href="adminpanel/Data_pembelian/Cetak_invoice/<?php echo $rs->kode_pesanan; ?>" target="_blank" class="btn-sm btn-success" style="text-decoration:none">
@@ -142,7 +142,8 @@
         foreach($tampil_detail_pesanan_user->result()as $rs2){ ?> 
 
             <li>
-                <?php echo $rs2->nama_produk; ?> : <?php echo $pesanan=$rs2->jumlah_pesanan; ?>, Harga : <?php echo $hasil_rupiah = "Rp " . number_format($harga=$rs2->harga,2,',','.');?>
+                <?php echo $rs2->nama_produk; ?> : <?php echo $pesanan=$rs2->jumlah_pesanan; ?>, Harga : <?php echo $hasil_rupiah = "Rp " . number_format($rs2->harga,0,',','.');?>
+                <?php $harga=$rs2->harga * $pesanan ?>
                 
             </li>
             <?php 
@@ -151,10 +152,10 @@
                 $grento_total_harga=$grento_total_harga + $harga;
 
              ?>
-            <?php } ?>
+    <?php } ?>
             <hr>
             Total Pesanan : <?php echo $grentot_pesanan; ?><br>
-            Total Harga : <?php echo $hasil_rupiah2 = "Rp " . number_format($grento_total_harga,2,',','.');?>
+            Total Harga : <?php echo $hasil_rupiah2 = "Rp " . number_format($grento_total_harga,0,',','.');?>
             <hr>
             <a href="img/bukti_bayar/<?php echo $rs->bukti_pembayaran; ?>" target="_blank" class="btn btn-success" >Lihat Bukti Pembayaran</a>
         </ol>
@@ -235,22 +236,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">PROSES CETAK INVOICE</h4>
+        <h4 class="modal-title" id="myModalLabel">PROSES INPUT NO INVOICE</h4>
       </div>
   
       <div class="modal-body">
-<form action="adminpanel/Data_pembelian/Proses_cetak_invoice" method="post">
+<form action="adminpanel/Data_pembelian/Proses_input_no_invoice" method="post">
     <input type="text" hidden name="id_pesanan" value="<?php echo $rs->id_pesanan; ?>">   
     <input type="text"   hidden  name="id_pelanggan"  value="<?php echo $rs->id_pelanggan; ?>">
     <input type="text" hidden  name="kode_pesanan"  value="<?php echo $rs->kode_pesanan; ?>">
         <div class="row">
             <div class="form-group col-md-12">
-             <input required type="text" class="form-control" name="kode_invoice" placeholder="Kode Invoice" value="<?php echo $rs->kode_invoice; ?>">
+             <input required type="text" readonly class="form-control" name="kode_invoice" placeholder="Kode Invoice" value="HTL <?php echo date('Y') ?>.<?php echo date('m'); ?>.<?php echo $buat_kode_invoice; ?>">
+             <input type="text" hidden name="no_urut_kode_invoice" value="<?php echo $buat_kode_invoice; ?>">
             </div>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit"  class="btn btn-primary" name="proses"><span class="glyphicon glyphicon-print"></span>  CETAK</button>
+        <button type="submit"  class="btn btn-primary" name="proses">SUBMIT</button>
       </div>
 </form>
       </div>  
