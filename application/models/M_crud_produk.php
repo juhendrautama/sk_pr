@@ -9,7 +9,12 @@ class M_crud_produk extends CI_Model {
 			
 		}
 
-
+//data rekomendasi
+function tampil_data_rekomen(){
+	$sql=$this->db->query("select	* FROM tbl_rekomendasi  ");
+	return $sql;
+}
+//data rekomendasi
 
 function tampil_data_produk(){
 			$sql=$this->db->query("select	id_produk,id_kategori,kode_produk,nama_produk,stok,harga,keterangan,tgl_tambah,gambar FROM tbl_produk ");

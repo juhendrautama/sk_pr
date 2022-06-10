@@ -5,6 +5,9 @@
                         <li>
                             <a href="adminpanel/Admin_profil"><i class="fa fa-table fa-fw"></i> Profil Prusahaan</a>
                         </li>
+                        <li>
+                            <a href="adminpanel/Data_rekomendasi"><i class="fa fa-table fa-fw"></i> Data Rekomendasi</a>
+                        </li>
                           <li>
                             <a href="adminpanel/Data_pelanggan"><i class="fa fa-table fa-fw"></i> Data Pelanggan</a>
                         </li>

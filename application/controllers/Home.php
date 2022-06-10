@@ -7,7 +7,6 @@ class Home extends CI_Controller {
 	function __construct()
 
 		{
-
 			parent::__construct();
 			$this->load->model('M_crud_baner');
 			$this->load->model('M_crud_profil');
@@ -24,12 +23,9 @@ class Home extends CI_Controller {
 
 	{
 		$data['tampil_data_profil']=$this->M_crud_profil->tampil_data_profil();
-
 		$data['tampil_data_kontak_addres']=$this->M_crud_kontak->tampil_data_kontak_addres();
 		$data['tampil_data_kontak_nomber_phone']=$this->M_crud_kontak->tampil_data_kontak_nomber_phone();
 		$data['tampil_data_kontak_email']=$this->M_crud_kontak->tampil_data_kontak_email();
-
-
 		//kategori produk
 		$data['tampil_data_kat_produk']=$this->M_crud_kat_produk->tampil_data_kat_produk();
 		//kategori produk
@@ -42,6 +38,19 @@ class Home extends CI_Controller {
 
 		$this->load->view('home',$data);
 
+	}
+
+
+	public function Estimasi()
+	{
+		$data['tampil_data_profil']=$this->M_crud_profil->tampil_data_profil();
+		$data['tampil_data_kontak_addres']=$this->M_crud_kontak->tampil_data_kontak_addres();
+		$data['tampil_data_kontak_nomber_phone']=$this->M_crud_kontak->tampil_data_kontak_nomber_phone();
+		$data['tampil_data_kontak_email']=$this->M_crud_kontak->tampil_data_kontak_email();
+		//kategori produk
+		$data['tampil_data_kat_produk']=$this->M_crud_kat_produk->tampil_data_kat_produk();
+		//kategori produk
+		$this->load->view('estimasi',$data);
 	}
 
 

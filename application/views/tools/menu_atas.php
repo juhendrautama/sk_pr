@@ -7,21 +7,27 @@
             <!-- <img src="img/logo/logo2.png" width="50" height="40"> -->
             <a href="" style="font-size: 60%; color:white;">PT Harmoni Trussindo Lestari</a>
           </h1>
-          <nav id="navbar" class="navbar">
+          <nav id="navbar" class="navbar bg-success">
             <ul>
               <li><a class="nav-link scrollto active" href="#">Home</a></li>
                <li class="dropdown"><a href="#"><span>Profil</span> <i class="bi bi-chevron-down"></i></a>
                 <ul>
                  <?php foreach($tampil_data_profil->result()as $rs) {?> 
                   <li>
-                    <a class="dropdown-item a" href="Profil/Selengkap_nya/<?php echo $rs->id_profil; ?>/<?php echo str_replace(' ','-',$rs->nama) ?>">
+                    <a class="dropdown-item " href="Profil/Selengkap_nya/<?php echo $rs->id_profil; ?>/<?php echo str_replace(' ','-',$rs->nama) ?>">
                             <?php echo $rs->nama; ?>
                         </a>
                   </li>
                 <?php } ?>
                 </ul>
               </li>
-             <li><a class="nav-link scrollto" href="#portfolio">Pruduk</a></li>  
+              <li class="dropdown scrollto"><a class="scrollto" href="#"><span>Produk</span> <i class="bi bi-chevron-down"></i></a>
+                <ul>
+                  <li><a class="dropdown-item  " href="#portfolio">Daftar Produk</a></li>
+                  <li><a class="dropdown-item " href="">Rekomendasi Produk</a></li>
+                  <li><a class="dropdown-item " href="Home/Estimasi">Estimasi Produk</a></li>  
+                </ul>
+              </li>
             <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
             
              <?php $berhasil=$this->session->userdata('login_user');
