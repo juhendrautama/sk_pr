@@ -33,36 +33,36 @@ function sessionku ()
 
 public function Simpan_data(){
 		if(isset($_POST['proses'])){
-		$nama_file=$this->M_crud_produk->upload_gambar();	
-		$hasil=$this->M_crud_produk->Simpan_data($nama_file);
+		$nama_file=$this->M_crud_produk->upload_gambar_rekomen();	
+		$hasil=$this->M_crud_produk->Simpan_data_rekomen($nama_file);
 		if ($hasil){ ?>
 				<script type="text/javascript">
-						alert('Data Tersimpan');window.location="<?php echo base_url() ?>adminpanel/Produk";
+						alert('Data Tersimpan');window.location="<?php echo base_url() ?>adminpanel/Data_rekomendasi";
 					</script>
 				<?php }
 			}else{
-				redirect('/Kategori_produk');
+				redirect('/Data_rekomendasi');
 			}
 	}
 
 public function Simpan_data_ubah(){
 		if(isset($_POST['proses'])){
-		$hasil=$this->M_crud_produk->Simpan_data_ubah();
+		$hasil=$this->M_crud_produk->Simpan_data_ubah_rekomen();
 		if ($hasil){ ?>
 				<script type="text/javascript">
-						alert('Data Tersimpan');window.location="<?php echo base_url() ?>adminpanel/Produk";
+						alert('Data Tersimpan');window.location="<?php echo base_url() ?>adminpanel/Data_rekomendasi";
 					</script>
 				<?php }
 			}else{
-				redirect('/Kategori_produk');
+				redirect('/Data_rekomendasi');
 			}
 	}	
 	
 function Hapus_data($id='0'){
-		$hasil=$this->M_crud_produk->Hapus_data($id);
+		$hasil=$this->M_crud_produk->Hapus_data_rekomen($id);
 		if ($hasil){ ?>
 				<script type="text/javascript">
-						window.location="<?php echo base_url() ?>adminpanel/Produk";
+						window.location="<?php echo base_url() ?>adminpanel/Data_rekomendasi";
 					</script>
 				<?php }
 		}

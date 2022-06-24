@@ -10,10 +10,84 @@ class M_crud_produk extends CI_Model {
 		}
 
 //data rekomendasi
+function ambil_jumlah_slider_id(){
+			
+	$sql=$this->db->query("select max(id_rekomen) as jumlah from tbl_rekomendasi");
+	return $sql->row();
+	
+}
+
 function tampil_data_rekomen(){
 	$sql=$this->db->query("select	* FROM tbl_rekomendasi  ");
 	return $sql;
 }
+function upload_gambar_rekomen(){
+	$config['upload_path'] = 'img/rekomen';
+	$config['allowed_types'] = '*';
+	$config['max_size']	= '1000000';
+	$config['max_width']  = '1000000';
+	$config['max_height']  = '1000000';
+	$this->load->library('upload',$config);
+
+
+	
+	
+if ( ! $this->upload->do_upload()){
+	$this->load->view('admin/admin_data_rekomen');
+
+}
+}
+
+function Simpan_data_rekomen(){
+	$judul=$this->db->escape_str($this->input->post('judul'));
+	$dt=$this->upload->data();
+	$file=$dt['orig_name'];
+	$ket=$this->db->escape_str($this->input->post('ket'));
+	$tgl=Date("Y-m-d");
+	$sql=$this->db->query("
+		INSERT INTO `tbl_rekomendasi` (
+			`id_rekomen`,
+			`judul`,
+			`file`,
+			`ket`,
+			`tgl`
+		)
+		VALUES
+			(
+			'$',
+			'$judul',
+			'$file',
+			'$ket',
+			'$tgl'
+			);
+	");
+return $sql ;	
+}
+function Simpan_data_ubah_rekomen(){
+	$id_rekomen=$this->db->escape_str($this->input->post('id_rekomen'));
+	$judul=$this->db->escape_str($this->input->post('judul'));
+	$ket=$this->db->escape_str($this->input->post('ket'));
+	$sql=$this->db->query("
+			UPDATE
+			  `tbl_rekomendasi`
+			SET
+			  `judul` = '$judul',
+			  `ket` = '$ket'
+			WHERE `id_rekomen` = '$id_rekomen';
+	");
+return $sql ;	
+}
+
+function Hapus_data_rekomen($id=''){
+
+$this->db->where('id_rekomen',$id);
+$query = $this->db->get('tbl_rekomendasi');
+$row = $query->row();
+unlink("img/rekomen/$row->file");
+$hasil=$this->db->query("delete from tbl_rekomendasi where id_rekomen = '$id' ");
+return $hasil;
+} 
+
 //data rekomendasi
 
 function tampil_data_produk(){
@@ -252,9 +326,31 @@ function buat_kode_invoice()   {
 			return $sql;
 		}		
 
-		function cetak_laporan($tgl1,$tgl2){
+	function cetak_laporan($tgl1,$tgl2){
 			$sql=$this->db->query("SELECT	* FROM tbl_pesanan WHERE tgl_invoice BETWEEN '$tgl1' AND '$tgl2'");
 			return $sql;
-		}			
+		}	
+
+//laporan invoice
+function tampil_data_lap_invoice(){
+	$tgl1=$this->db->escape_str($this->input->post('tgl1'));
+	$tgl2=$this->db->escape_str($this->input->post('tgl2'));
+	$sql=$this->db->query("SELECT * FROM tbl_pesanan WHERE no_urut_kode_invoice IS NOT NULL AND tgl_invoice BETWEEN '$tgl1' AND '$tgl2'");
+	return $sql;
+}
+
+function tampil_data_invoice($id_pesanan){
+	$sql=$this->db->query("SELECT	* FROM tbl_pesanan WHERE id_pesanan='$id_pesanan' ");
+	return $sql->row();
+}
+
+function tampil_data_detail_pesanan($kode_pesanan){
+	$sql=$this->db->query("SELECT	* FROM tbl_detail_pesanan WHERE kode_pesanan='$kode_pesanan' ");
+	return $sql;
+}
+//laporan invoice			
+		
+		
+	
 
 }

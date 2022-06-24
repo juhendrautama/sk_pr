@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2022 at 11:51 AM
+-- Generation Time: Jun 24, 2022 at 08:59 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.31
 
@@ -48,19 +48,6 @@ INSERT INTO `tbl_admin` (`id_admin`, `nama_admin`, `user`, `pass`, `alamat`, `no
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_baner`
---
-
-CREATE TABLE `tbl_baner` (
-  `id_baner` int(7) NOT NULL,
-  `judul_baner` varchar(100) DEFAULT NULL,
-  `gambar_baner` varchar(100) DEFAULT NULL,
-  `tgl_baner` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_detail_pesanan`
 --
 
@@ -86,7 +73,9 @@ INSERT INTO `tbl_detail_pesanan` (`id_detail_pesanan`, `id_pelanggan`, `id_produ
 (92, 2, 13, '202204022001', 'Reng Taso 32.45 - 6m', '20', '57000', '2022-04-02', 'O'),
 (93, 1, 11, '202204021002', 'Sakura Truss White Gold 75.75', '20', '125000', '2022-04-02', 'O'),
 (94, 1, 12, '202204021002', 'Kanal Taso C75.75 - 6m', '50', '121000', '2022-04-02', 'O'),
-(95, 1, 13, '202204021002', 'Reng Taso 32.45 - 6m', '2', '57000', '2022-04-02', 'O');
+(95, 1, 13, '202204021002', 'Reng Taso 32.45 - 6m', '2', '57000', '2022-04-02', 'O'),
+(99, 1, 12, '202206051003', 'Kanal Taso C75.75 - 6m', '1', '121000', '2022-06-05', 'O'),
+(101, 2, 12, '202206242004', 'Kanal Taso C75.75 - 6m', '1', '121000', '2022-06-24', 'O');
 
 -- --------------------------------------------------------
 
@@ -155,8 +144,8 @@ CREATE TABLE `tbl_pelanggan` (
 --
 
 INSERT INTO `tbl_pelanggan` (`id_pelanggan`, `nama`, `jenis_kel`, `tgl_lahir`, `alamat`, `no_telpon`, `email`, `pass`, `pass_samaran`, `tgl`) VALUES
-(1, 'juhendra utama', 'Perempuan', '1992-07-09', 'jambi', '082117114028', 'hendracungkryng@gmail.com', '202cb962ac59075b964b07152d234b70', '123', '0000-00-00'),
-(2, 'a', 'Laki-Laki', '2022-04-14', 'Jln, telanai pura', '1231212132', 'a@a', '0cc175b9c0f1b6a831c399e269772661', 'a', '2022-04-02');
+(1, 'juhendra utama3', 'Perempuan', '1992-07-09', 'jambi', '082117114028', 'hendracungkryng@gmail.com', '202cb962ac59075b964b07152d234b70', '123', '2019-01-28'),
+(2, 'a22222', 'Laki-Laki', '2022-04-14', 'Jln, telanai pura', '1231212132', 'a@a', '0cc175b9c0f1b6a831c399e269772661', 'a', '2022-04-02');
 
 -- --------------------------------------------------------
 
@@ -185,7 +174,9 @@ CREATE TABLE `tbl_pesanan` (
 
 INSERT INTO `tbl_pesanan` (`id_pesanan`, `id_pelanggan`, `id_sopir`, `kode_pesanan`, `bukti_pembayaran`, `jumlah_pesan`, `total_harga`, `tanggal_pesan`, `status`, `kode_invoice`, `tgl_invoice`, `no_urut_kode_invoice`) VALUES
 (39, 2, 4, '202204022001', 'Format_Lampiran_C_Tidak_Anggota_Parpol.doc', '45', '4225000', '2022-04-02', 'Selesai', 'HTL 2022.04.001', '2022-04-02', '001'),
-(40, 1, 5, '202204021002', 'Laporan_Absensi_Maret_2022_PNSper.xls', '72', '8664000', '2022-04-02', 'Selesai', 'HTL 2022.04.002', '2022-04-03', '002');
+(40, 1, 5, '202204021002', 'Laporan_Absensi_Maret_2022_PNSper.xls', '72', '8664000', '2022-04-02', 'Selesai', 'HTL 2022.04.002', '2022-04-03', '002'),
+(41, 1, NULL, '202206051003', 'data_klinik_kecamtan_kota_baru.xlsx', '1', '121000', '2022-06-05', 'PROSES', NULL, NULL, NULL),
+(42, 2, 4, '202206242004', 'IMG_4278.JPG', '1', '121000', '2022-06-24', 'Di Kirim', 'HTL 2022.06.003', '2022-06-24', '003');
 
 -- --------------------------------------------------------
 
@@ -237,6 +228,29 @@ INSERT INTO `tbl_profil` (`id_profil`, `nama`, `isi`, `tgl`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_rekomendasi`
+--
+
+CREATE TABLE `tbl_rekomendasi` (
+  `id_rekomen` int(7) NOT NULL,
+  `judul` varchar(100) DEFAULT NULL,
+  `file` varchar(100) DEFAULT NULL,
+  `ket` text DEFAULT NULL,
+  `tgl` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_rekomendasi`
+--
+
+INSERT INTO `tbl_rekomendasi` (`id_rekomen`, `judul`, `file`, `ket`, `tgl`) VALUES
+(3, 'a', '0001.jpg', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>-</p>\r\n</body>\r\n</html>', '2022-06-22'),
+(4, 'b', '0002.png', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>-</p>\r\n</body>\r\n</html>', '2022-06-22'),
+(5, 'b', '0004.jpg', '<!DOCTYPE html>\r\n<html>\r\n<head>\r\n</head>\r\n<body>\r\n<p>-</p>\r\n</body>\r\n</html>', '2022-06-22');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_sopir`
 --
 
@@ -254,7 +268,7 @@ CREATE TABLE `tbl_sopir` (
 --
 
 INSERT INTO `tbl_sopir` (`id_sopir`, `nama`, `no_tlp`, `plat`, `tgl`, `status`) VALUES
-(4, 'Juhendra Utama', '082117114028', 'BH02918Z', '2022-03-24', '1'),
+(4, 'Juhendra Utama', '082117114028', 'BH02918Z', '2022-03-24', '2'),
 (5, 'wahit', '081318637123', 'BH 2912 Z', '2022-03-24', '1'),
 (6, 'Haviz Husin, ', '082152735172', 'BH 2912 Z', '2022-03-24', '1');
 
@@ -267,12 +281,6 @@ INSERT INTO `tbl_sopir` (`id_sopir`, `nama`, `no_tlp`, `plat`, `tgl`, `status`) 
 --
 ALTER TABLE `tbl_admin`
   ADD PRIMARY KEY (`id_admin`);
-
---
--- Indexes for table `tbl_baner`
---
-ALTER TABLE `tbl_baner`
-  ADD PRIMARY KEY (`id_baner`);
 
 --
 -- Indexes for table `tbl_detail_pesanan`
@@ -317,6 +325,12 @@ ALTER TABLE `tbl_profil`
   ADD PRIMARY KEY (`id_profil`);
 
 --
+-- Indexes for table `tbl_rekomendasi`
+--
+ALTER TABLE `tbl_rekomendasi`
+  ADD PRIMARY KEY (`id_rekomen`);
+
+--
 -- Indexes for table `tbl_sopir`
 --
 ALTER TABLE `tbl_sopir`
@@ -333,16 +347,10 @@ ALTER TABLE `tbl_admin`
   MODIFY `id_admin` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `tbl_baner`
---
-ALTER TABLE `tbl_baner`
-  MODIFY `id_baner` int(7) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `tbl_detail_pesanan`
 --
 ALTER TABLE `tbl_detail_pesanan`
-  MODIFY `id_detail_pesanan` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id_detail_pesanan` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
 
 --
 -- AUTO_INCREMENT for table `tbl_kategori_produk`
@@ -366,19 +374,25 @@ ALTER TABLE `tbl_pelanggan`
 -- AUTO_INCREMENT for table `tbl_pesanan`
 --
 ALTER TABLE `tbl_pesanan`
-  MODIFY `id_pesanan` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id_pesanan` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `tbl_produk`
 --
 ALTER TABLE `tbl_produk`
-  MODIFY `id_produk` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_produk` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `tbl_profil`
 --
 ALTER TABLE `tbl_profil`
   MODIFY `id_profil` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `tbl_rekomendasi`
+--
+ALTER TABLE `tbl_rekomendasi`
+  MODIFY `id_rekomen` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tbl_sopir`

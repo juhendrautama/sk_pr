@@ -18,19 +18,13 @@
 
      
 
-        <div class="row">
-
-        <div class="col-md-12">
-        <header class="section-header wow fadeInUp">
-          <h3>Perhitungan Estimasi</h3>
-        </header>
-          <hr>
                   <div class="panel panel-default">
                     <div class="panel-body">
         <ul class="list-group">
           <li class="list-group-item bg-success" style="color:#ffff;">
-            <i class="bi bi-card-list"></i>
-            Menu Perhitungan Estimasi
+          <center>
+            <h3>Perhitungan Estimasi</h3>
+          </center>  
           </li>
             <a href="#" class="list-group-item d-flex justify-content-between align-items-start" data-bs-toggle="modal" data-bs-target="#exampleModal1">
             1. Menghitung Luas Bangunan
@@ -44,8 +38,6 @@
             
         </ul>
 
-                    </div>
-                  </div>
         </div>  
         
 
@@ -54,7 +46,7 @@
 
       </div>
     </section><!-- End Services Section -->
-
+<br><br><br><br><br>
 <!-- rumus 1 -->
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

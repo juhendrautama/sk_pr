@@ -32,12 +32,25 @@
                                 
                             </ul>
                         </li>
-                         <li>
-                            <a href="adminpanel/Laporan"><i class="fa fa-table fa-fw"></i> Laporan</a>
+                        <li>
+                            <a href="#"><i class="fa fa-table fa-fw"></i>Laporan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="adminpanel/Laporan/Pelanggan"><i class="fa fa-check"></i> Laporan Pelanggan</a>
+                                </li>
+                                <li>
+                                    <a href="adminpanel/Laporan/Penjualan"><i class="fa fa-check"></i> Laporan Penjualan</a>
+                                </li>
+                                <li>
+                                    <a href="adminpanel/Laporan/Invoice"><i class="fa fa-check"></i> Laporan Invoice</a>
+                                </li>
+                                
+                            </ul>
                         </li>
+                       
                         
                          <li>
-                            <a href="adminpanel/Admin_kontak"><i class="fa fa-table fa-fw"></i> Kontak</a>
+                            <a href="adminpanel/Admin_kontak"><i class="fa fa-table fa-fw"></i>Kontak</a>
                         </li>
                        
             

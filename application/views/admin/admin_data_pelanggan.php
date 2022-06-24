@@ -58,8 +58,8 @@
                                         <th><center>Aksi</center></th>
                                     </tr>
                                 </thead>
+                                <?php $no=1; foreach($tampil_data_pelanggan->result()as $rs){?> 
                                 <tbody>
-                                 <?php $no=1; foreach($tampil_data_pelanggan->result()as $rs){?> 
                                     <tr class="odd gradeX">
                                         <td><?php echo $no ?></td>
                                         <td><?php echo $rs->nama; ?></td>
@@ -67,16 +67,57 @@
                                         <td><?php echo $rs->no_telpon; ?></td>
                                         <td><?php echo $rs->email; ?></td>
                                         <td >
-                                            <center>
-
-                                            <a style="text-decoration:none" href="adminpanel/Admin_profil/Ubah_profil/<?php echo $rs->id_pelanggan; ?>" class="btn-sm btn-danger">Ubah</a>    
-                                            
-
-                                           </center>     
+                                        <center>
+                                            <a style="text-decoration:none" href="#" class="btn-sm btn-danger" data-toggle="modal" data-target="#m<?php echo $rs->id_pelanggan; ?>">Ubah</a>    
+                                        </center>     
                                         </td>
                                     </tr>
-                                  <?php $no++;   }?>            
+                                            
                                 </tbody>
+                                <!-- Modal -->
+<div class="modal fade" id="m<?php echo $rs->id_pelanggan; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ubah Data Pelanggan </h4>
+      </div>
+    <form action="adminpanel/Data_pelanggan/Simpan_data_ubah" method="post">
+      <div class="modal-body">
+
+        <input type="text"  name="id_pelanggan" hidden value="<?php echo $rs->id_pelanggan; ?>">
+
+        <div class="row">
+             <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="recipient-name" name="nama" placeholder="NAMA " value="<?php echo $rs->nama; ?>">
+            </div>
+            <div class="col-md-12 form-group">
+             <input type="text" class="form-control" id="recipient-name" name="alamat" placeholder="alamat " value="<?php echo $rs->alamat; ?>">
+            </div>
+            <div class="col-md-12 form-group">
+             <input type="text" class="form-control" id="recipient-name" name="no_telpon" placeholder="no_telpon " value="<?php echo $rs->no_telpon; ?>">
+            </div>
+            <div class="col-md-12 form-group">
+             <input type="text" class="form-control" id="recipient-name" name="email" placeholder="email " value="<?php echo $rs->email; ?>">
+            </div>
+          
+        </div>
+           
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary" name="proses">Ubah</button>
+      </div>
+
+    </form> 
+
+    </div>
+  </div>
+</div>
+<!-- Modal -->  
+<?php $no++;   }?>  
                             </table>
                           
                         </div>

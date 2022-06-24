@@ -9,22 +9,16 @@
 </head>
 
 <body onload="window.print();" >
-
- 
-
-<table border="0" width="100%">
-     <tr>
-          <td width="120px">
-             <center>  
-             PT. HARMONI TRUSSINDO LESTARI <br>
-             LAPORAN PENJUALAN 
+<img src="img/logo/logo.png" style="margin-right:500px;" >
+             <center style="margin-top:-75px;">  
+             <font style="font-size:25px; ">PT. HARMONI TRUSSINDO LESTARI</font> </br>     
+             <font style="font-size:10px; margin-top:-600px;">JL H Adam Malik, Handil Jaya No. 81 , Jambi, Indonesia </font><br>
+             <font style="font-size:10px; ">HP : 082398567789</font> 
              </center>
-          </td>
-     </tr>
-</table>
-
 
 <b><hr size="100px"></b>
+<center>LAPORAN PENJUALAN </center>
+<br>
 <?php $tgl1=$this->uri->segment('4'); ?> <?php $tgl2=$this->uri->segment('5'); ?>
 TANGGAL : <?php  echo date('d F Y', strtotime($tgl1)); ?> - <?php  echo date('d F Y', strtotime($tgl2)); ?>
 <br><br>
@@ -41,16 +35,16 @@ TANGGAL : <?php  echo date('d F Y', strtotime($tgl1)); ?> - <?php  echo date('d 
                                  <?php $no=1; $total_penjualan1=0; foreach($tampil_data_cari_laporan->result()as $rs){?>
                                 <tr  style="font-size:11px; border-bottom:1px black solid; border-top:1px black solid; border-width:1px; ">
                                 <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-width:2px;">
-                                        <p style="margin-top:-38px;"><?php echo $no ?></p>
+                                        <p style="margin-top:-25px;"><?php echo $no ?></p>
                                     </td>
                                     <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-width:2px;">
-                                        <p style="margin-top:-38px;"><?php echo $rs->kode_invoice; ?></p>
+                                        <p style="margin-top:-25px;"><?php echo $rs->kode_invoice; ?></p>
                                     </td>
                                     <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-width:2px;">
-                                        <p style="margin-top:-38px;"><?php echo $rs->tgl_invoice; ?></p>
+                                        <p style="margin-top:-25px;"><?php echo $rs->tgl_invoice; ?></p>
                                     </td>
                                     <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-left:-5px; border-width:2px;">
-                                    <p style="margin-top:-38px;">
+                                    <p style="margin-top:-25px;">
                                        <?php $id=$rs->id_pelanggan; ?>
                                        <?php $datapelanggan=$this->M_crud_pelanggan->tampil_data_profil_user($id); ?>
                                        <?php echo $datapelanggan->nama; ?>
@@ -112,7 +106,28 @@ TANGGAL : <?php  echo date('d F Y', strtotime($tgl1)); ?> - <?php  echo date('d 
                                   </tr>
                                  
                             </table>
-                          
+                            <br>
+<div style="margin-left:20px;">
+<table>
+    <tr>
+        <td align="center">Dibuat</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td> 
+        <td align="center">Diketahui</td>
+    </tr>
+    <tr><td><br></td></tr>
+    <tr><td><br></td></tr>
+    <tr><td><br></td></tr>
+    <tr>
+        <td align="center">____________</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td align="center">____________</td>
+    </tr>
+
+    <tr>
+        
+    </tr>
+</table>
+</div>
 
 
 

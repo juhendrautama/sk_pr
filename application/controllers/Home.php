@@ -22,6 +22,9 @@ class Home extends CI_Controller {
 	public function index()
 
 	{
+		$data['ambil_jumlah_slider']=$this->M_crud_produk->ambil_jumlah_slider_id();
+		$data['tampil_data_rekomen']=$this->M_crud_produk->tampil_data_rekomen();
+
 		$data['tampil_data_profil']=$this->M_crud_profil->tampil_data_profil();
 		$data['tampil_data_kontak_addres']=$this->M_crud_kontak->tampil_data_kontak_addres();
 		$data['tampil_data_kontak_nomber_phone']=$this->M_crud_kontak->tampil_data_kontak_nomber_phone();

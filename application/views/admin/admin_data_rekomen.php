@@ -57,13 +57,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Tambah Data </h4>
       </div>
-    <form action="adminpanel/Produk/Simpan_data" method="post" enctype="multipart/form-data">
+    <form action="adminpanel/Data_rekomendasi/Simpan_data" method="post" enctype="multipart/form-data">
       <div class="modal-body">
-
-        
-           
-       
-
         <div class="row">
              <div class="form-group col-md-12">
                 <input type="text" class="form-control" id="recipient-name" name="judul" placeholder="JUDUL">
@@ -98,7 +93,7 @@
 <!-- Modal -->
 
                         <!-- /.panel-heading -->
-                        <div class="panel-body">
+                        <div class="panel-body" >
                             <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                            
                                 <thead>
@@ -110,19 +105,59 @@
                                         <th><center>Aksi</center></th>
                                     </tr>
                                 </thead>
+                                <?php $no=1; foreach($tampil_data_rekomen->result()as $rs){?> 
                                 <tbody>
                                     <tr class="odd gradeX">
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
-                                      <td></td>
+                                      <td><?php echo $no; ?></td>
+                                      <td><?php echo $rs->judul; ?></td>
+                                      <td><img src="img/rekomen/<?php echo $rs->file; ?>" alt="" width="50px" height="50px"></td>
+                                      <td><?php echo $rs->tgl; ?></td>
+                                      <td>
+                                      <a  style="text-decoration:none" href="#" class="btn-sm btn-primary"  data-toggle="modal" data-target="#m<?php echo $rs->id_rekomen; ?>">
+                                        Ubah
+                                        </a> 
+                                        &nbsp;
+                                        <a style="text-decoration:none" Onclick="return confirm('apakah yakin ingin di Hapus ?');" href="adminpanel/Data_rekomendasi/Hapus_data/<?php echo $rs->id_rekomen; ?>" class="btn-sm btn-danger">Hapus</a>
+                                      </td>
                                     </tr>
-
-                                 
-
-        
                                 </tbody>
+<!-- Modal -->
+<div class="modal fade" id="m<?php echo $rs->id_rekomen; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ubah Data Rekomendasi </h4>
+      </div>
+    <form action="adminpanel/Data_rekomendasi/Simpan_data_ubah" method="post">
+      <div class="modal-body">
+
+        <input type="text"  name="id_rekomen" hidden value="<?php echo $rs->id_rekomen; ?>">
+
+        <div class="row">
+             <div class="col-md-12 form-group">
+                <input type="text" class="form-control" id="recipient-name" name="judul" placeholder="NAMA " value="<?php echo $rs->judul; ?>">
+            </div>
+             <div class="col-md-12 form-group">
+              <textarea name="ket" ><?php echo $rs->ket; ?></textarea>
+            </div>
+        </div>
+           
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit"  class="btn btn-primary" name="proses">Ubah</button>
+      </div>
+
+    </form> 
+
+    </div>
+  </div>
+</div>
+<!-- Modal -->          
+                                <?php $no++;   }?>     
                             </table>
                           
                         </div>

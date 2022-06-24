@@ -41,7 +41,10 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                    <form method="post" action="adminpanel/Laporan/Cari">
+                        <hr>    
+                        <center><h3>LAPORAN PENJUALAN</h3></center>
+                        <hr>        
+                    <form method="post" action="adminpanel/Laporan/Penjualan">
                         <table>
                            
                             <tr>
@@ -83,13 +86,13 @@
                                         <p style="margin-top:-38px;"><?php echo $no ?></p>
                                     </td>
                                     <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-width:2px;">
-                                        <p style="margin-top:-38px;"><?php echo $rs->kode_invoice; ?></p>
+                                        <p style="margin-top:-25px;"><?php echo $rs->kode_invoice; ?></p>
                                     </td>
                                     <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-width:2px;">
-                                        <p style="margin-top:-38px;"><?php echo $rs->tgl_invoice; ?></p>
+                                        <p style="margin-top:-25px;"><?php echo $rs->tgl_invoice; ?></p>
                                     </td>
                                     <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-left:-5px; border-width:2px;">
-                                    <p style="margin-top:-38px;">
+                                    <p style="margin-top:-25px;">
                                        <?php $id=$rs->id_pelanggan; ?>
                                        <?php $datapelanggan=$this->M_crud_pelanggan->tampil_data_profil_user($id); ?>
                                        <?php echo $datapelanggan->nama; ?>
