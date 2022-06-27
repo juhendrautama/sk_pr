@@ -59,9 +59,9 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                 <?php $no=1; foreach($tampil_data_pembelian->result()as $rs){?> 
+                                 <?php $no_urut=1; foreach($tampil_data_pembelian->result()as $rs){?> 
                                     <tr class="odd gradeX" style="font-size:11px; text-align: center; ">
-                                        <td><?php echo $no ?></td>
+                                        <td><?php echo $no_urut; ?></td>
                                         <td><?php echo $rs->kode_pesanan; ?></td>
                                         <td><?php echo $rs->jumlah_pesan; ?></td>
                                         <td><?php echo $hasil_rupiah = "Rp " . number_format($harga=$rs->total_harga,2,',','.');?></td>
@@ -264,7 +264,7 @@
 
 
 
-                                  <?php $no++;   }?>            
+                                  <?php $no_urut++;   }?>            
                                 </tbody>
                             </table>
                           

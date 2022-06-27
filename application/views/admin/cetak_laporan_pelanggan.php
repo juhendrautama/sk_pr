@@ -42,7 +42,7 @@ TANGGAL : <?php  echo date('d F Y', strtotime($tgl1)); ?> - <?php  echo date('d 
     <td><?php echo $rs->no_telpon; ?></td>
     <td><?php echo $rs->email; ?></td>
     </tr>
-    <?php } ?>
+    <?php $no++; } ?>
                                 
 </table>
 <br>

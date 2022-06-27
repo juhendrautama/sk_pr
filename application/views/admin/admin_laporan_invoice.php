@@ -96,7 +96,7 @@
                                 </td>
                             </tr>
                             </tbody> 
-                            <?php } ?>
+                            <?php $no++; } ?>
                         <?php }else{ ?> 
                             <tbody>
                             <tr class="odd gradeX">

@@ -89,7 +89,7 @@
                                 <td><?php echo $rs->email; ?></td>
                             </tr>
                             </tbody> 
-                            <?php } ?>
+                            <?php $no++; } ?>
                         <?php }else{ ?> 
                             <tbody>
                             <tr class="odd gradeX">
@@ -100,7 +100,7 @@
                                 <td></td>
                             </tr> 
                             </tbody> 
-                        <?php } ?>      
+                        <?php  } ?>      
                                             
                         </tbody>       
 

@@ -83,7 +83,7 @@
                                  <?php $no=1; $total_penjualan1=0; foreach($tampil_data_cari_laporan->result()as $rs){?>
                                 <tr  style="font-size:11px; border-bottom:1px black solid; border-top:1px black solid; border-width:1px; ">
                                 <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-width:2px;">
-                                        <p style="margin-top:-38px;"><?php echo $no ?></p>
+                                        <p style="margin-top:-23px;"><?php echo $no ?></p>
                                     </td>
                                     <td style="text-align:center; border-bottom:1px black solid; border-top:1px black solid; border-width:2px;">
                                         <p style="margin-top:-25px;"><?php echo $rs->kode_invoice; ?></p>
