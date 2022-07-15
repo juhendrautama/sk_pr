@@ -61,15 +61,23 @@
     <td><?php echo $no ?></td>
     <td><?php echo $rs->nama_produk; ?></td>
     <td><?php echo $jum=$rs->jumlah_pesanan; ?></td>
-    <td><?php echo $harga=$rs->harga; ?></td>
-    <td><?php echo $hasil=$harga * $jum; ?></td>
+    <td><?php  $harga=$rs->harga; ?>
+    <?php echo $total_harga = "Rp " . number_format($rs->harga,0,',','.');?>
+</td>
+    <td><?php  $hasil=$harga * $jum; ?>
+    <?php echo $hasil2 = "Rp " . number_format($hasil,0,',','.');?>
+</td>
     </tr>
     <?php $no++; } ?>
     <tr>
         <td colspan="2" align="center">Jumlah</td>
-        <td><?php echo $ $tot_jum=$tot_jum+$jum; ?></td>
-        <td><?php echo $ $tot_harga=$tot_harga+$harga; ?></td>
-        <td><?php echo $ $tot_hasil=$tot_hasil+$hasil; ?></td>
+        <td><?php echo $tot_jum=$tot_jum+$jum; ?></td>
+        <td><?php  $tot_harga=$tot_harga+$harga; ?>
+        <?php echo $tot_harga2 = "Rp " . number_format($tot_harga,0,',','.');?>
+    </td>
+        <td><?php   $tot_hasil=$tot_hasil+$hasil; ?>
+        <?php echo $tot_hasil2 = "Rp " . number_format($tot_hasil,0,',','.');?>
+    </td>
     </tr>                       
 </table>
 <br>

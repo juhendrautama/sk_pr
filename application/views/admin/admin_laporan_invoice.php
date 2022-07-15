@@ -86,7 +86,9 @@
                                 <td><?php echo $no ?></td>
                                 <td><?php echo $rs->kode_invoice; ?></td>
                                 <td><?php echo $rs->jumlah_pesan; ?></td>
-                                <td><?php echo $rs->total_harga; ?></td>
+                                <td>
+                                <?php echo $total_harga = "Rp " . number_format($rs->total_harga,0,',','.');?>
+                            </td>
                                 <td><?php echo $rs->tgl_invoice; ?></td>
                                 <td>
                                 <a target="_blank"  href="adminpanel/Laporan/Cetak_laporan_invoice/<?php echo $rs->id_pesanan; ?>/<?php echo $rs->kode_pesanan; ?>" class="btn btn-success btn-sm">
